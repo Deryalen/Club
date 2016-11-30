@@ -86,39 +86,12 @@ namespace Club
 
         private void updateSelected_Click(object sender, EventArgs e)
         {
-            var instance = new RunningClubDataSet.ParticipantDataTable();
-            participantTableAdapter1.FillBy(instance, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
-            object row = instance.Rows[0].ItemArray;
-            bool edit = false;
-
-            if (Convert.ToString(dataGridView1.SelectedRows[0].Cells[4]) != "")
-            {
-                var newItem = new EditParticipant(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
-                    dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
-                    dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
-                    Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[3].Value),
-                    dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-                newItem.ShowDialog();
-                participantTableAdapter1.Fill(runningClubDataSet.Participant);
-                runningClubDataSet.AcceptChanges();
-                edit = true;
-            }
-            else
-            {
-                var newItem = new EditParticipant(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
-                    Convert.ToString(dataGridView1.SelectedRows[0].Cells[1].Value),
-                    Convert.ToString(dataGridView1.SelectedRows[0].Cells[2].Value),
-                    Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[3].Value),
-                    "");
-            }
+            UpdateItem();
         }
 
         private void addToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var edit = new EditParticipant();
-            edit.ShowDialog();
-            participantTableAdapter1.Fill(runningClubDataSet.Participant);
-            runningClubDataSet.AcceptChanges();
+            AddItem();
         }
 
         private void deleteSelected_Click(object sender, EventArgs e)
@@ -131,6 +104,38 @@ namespace Club
             DeleteItem();
         }
 
+        private void AddItem()
+        {
+            if (label1.Text == @"Participants")
+            {
+                var edit = new EditParticipant();
+                edit.ShowDialog();
+                participantTableAdapter1.Fill(runningClubDataSet.Participant);
+                runningClubDataSet.AcceptChanges();
+            }
+            else if (label1.Text == @"Coaches")
+            {
+                var edit = new EditCoach();
+                edit.ShowDialog();
+                coachTableAdapter1.Fill(runningClubDataSet.Coach);
+                runningClubDataSet.AcceptChanges();
+            }
+            else if (label1.Text == @"Clubs")
+            {
+                var edit = new EditClub();
+                edit.ShowDialog();
+                clubTableAdapter1.Fill(runningClubDataSet.Club);
+                runningClubDataSet.AcceptChanges();
+            }
+            else if (label1.Text == @"Sponsors")
+            {
+                var edit = new EditSponsor();
+                edit.ShowDialog();
+                sponsorTableAdapter1.Fill(runningClubDataSet.Sponsor);
+                runningClubDataSet.AcceptChanges();
+            }
+        }
+
         private void DeleteItem()
         {
             if (label1.Text == @"Participants")
@@ -139,11 +144,130 @@ namespace Club
                 participantTableAdapter1.Fill(runningClubDataSet.Participant);
                 runningClubDataSet.AcceptChanges();
             }
+            else if (label1.Text == @"Coaches")
+            {
+                coachTableAdapter1.DeleteQuery(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                coachTableAdapter1.Fill(runningClubDataSet.Coach);
+                runningClubDataSet.AcceptChanges();
+            }
+            else if (label1.Text == @"Clubs")
+            {
+                clubTableAdapter1.DeleteQuery(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                clubTableAdapter1.Fill(runningClubDataSet.Club);
+                runningClubDataSet.AcceptChanges();
+            }
+            else if (label1.Text == @"Sponsors")
+            {
+                sponsorTableAdapter1.DeleteQuery(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                sponsorTableAdapter1.Fill(runningClubDataSet.Sponsor);
+                runningClubDataSet.AcceptChanges();
+            }
         }
 
         private void updateToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            UpdateItem();
+        }
 
+        private void UpdateItem()
+        {
+            if (label1.Text == @"Participants")
+            {
+                var instance = new RunningClubDataSet.ParticipantDataTable();
+                participantTableAdapter1.FillBy(instance, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                object row = instance.Rows[0].ItemArray;
+                bool edit = false;
+
+                if (Convert.ToString(dataGridView1.SelectedRows[0].Cells[4].Value) != "")
+                {
+                    var newItem = new EditParticipant(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                        dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                        dataGridView1.SelectedRows[0].Cells[2].Value.ToString(),
+                        Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[3].Value),
+                        dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                    newItem.ShowDialog();
+                    participantTableAdapter1.Fill(runningClubDataSet.Participant);
+                    runningClubDataSet.AcceptChanges();
+                    edit = true;
+                }
+                else
+                {
+                    var newItem = new EditParticipant(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                        Convert.ToString(dataGridView1.SelectedRows[0].Cells[1].Value),
+                        Convert.ToString(dataGridView1.SelectedRows[0].Cells[2].Value),
+                        Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[3].Value),
+                        "");
+                    newItem.ShowDialog();
+                    participantTableAdapter1.Fill(runningClubDataSet.Participant);
+                    runningClubDataSet.AcceptChanges();
+                    edit = true;
+                }
+            }
+
+            else if (label1.Text == @"Coaches")
+            {
+                var instance = new RunningClubDataSet.CoachDataTable();
+                coachTableAdapter1.FillBy(instance, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                object row = instance.Rows[0].ItemArray;
+                bool edit = false;
+
+                if (Convert.ToString(dataGridView1.SelectedRows[0].Cells[3].Value) != "")
+                {
+                    var newItem = new EditCoach(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                        dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                        Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value),
+                        dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                    newItem.ShowDialog();
+                    coachTableAdapter1.Fill(runningClubDataSet.Coach);
+                    runningClubDataSet.AcceptChanges();
+                    edit = true;
+                }
+                else
+                {
+                    var newItem = new EditCoach(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                     dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                     Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value),
+                     "");
+                    newItem.ShowDialog();
+                    coachTableAdapter1.Fill(runningClubDataSet.Coach);
+                    runningClubDataSet.AcceptChanges();
+                    edit = true;
+                }
+            }
+
+            else if (label1.Text == @"Clubs")
+            {
+                var instance = new RunningClubDataSet.ClubDataTable();
+                clubTableAdapter1.FillBy(instance, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                object row = instance.Rows[0].ItemArray;
+                bool edit = false;
+
+                var newItem = new EditClub(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                    dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                    Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[2].Value),
+                    dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                newItem.ShowDialog();
+                clubTableAdapter1.Fill(runningClubDataSet.Club);
+                runningClubDataSet.AcceptChanges();
+                edit = true;
+            }
+
+            else if (label1.Text == @"Sponsors")
+            {
+                var instance = new RunningClubDataSet.SponsorDataTable();
+                sponsorTableAdapter1.FillBy(instance,
+                    Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value));
+                object row = instance.Rows[0].ItemArray;
+                bool edit = false;
+
+                var newItem = new EditSponsor(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                    dataGridView1.SelectedRows[0].Cells[1].Value.ToString(),
+                    Convert.ToDecimal(dataGridView1.SelectedRows[0].Cells[2].Value));
+                newItem.ShowDialog();
+                sponsorTableAdapter1.Fill(runningClubDataSet.Sponsor);
+                runningClubDataSet.AcceptChanges();
+                edit = true;
+            }
         }
     }
 }

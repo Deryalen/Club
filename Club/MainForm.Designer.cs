@@ -38,6 +38,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.databasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eventsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.participantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,12 +64,10 @@
             this.coachTableAdapter1 = new Club.RunningClubDataSetTableAdapters.CoachTableAdapter();
             this.distanceTableAdapter1 = new Club.RunningClubDataSetTableAdapters.DistanceTableAdapter();
             this.eventTableAdapter1 = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
-            this.participantTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ParticipantTableAdapter();
             this.sponsorTableAdapter1 = new Club.RunningClubDataSetTableAdapters.SponsorTableAdapter();
             this.updateSelected = new System.Windows.Forms.Button();
             this.deleteSelected = new System.Windows.Forms.Button();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.participantTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ParticipantTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
@@ -146,9 +146,23 @@
             // addToolStripMenuItem1
             // 
             this.addToolStripMenuItem1.Name = "addToolStripMenuItem1";
-            this.addToolStripMenuItem1.Size = new System.Drawing.Size(96, 22);
+            this.addToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.addToolStripMenuItem1.Text = "Add";
             this.addToolStripMenuItem1.Click += new System.EventHandler(this.addToolStripMenuItem1_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem1
+            // 
+            this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
+            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
+            this.updateToolStripMenuItem1.Text = "Update";
+            this.updateToolStripMenuItem1.Click += new System.EventHandler(this.updateToolStripMenuItem1_Click);
             // 
             // databasesToolStripMenuItem
             // 
@@ -332,10 +346,6 @@
             // 
             this.eventTableAdapter1.ClearBeforeFill = true;
             // 
-            // participantTableAdapter1
-            // 
-            this.participantTableAdapter1.ClearBeforeFill = true;
-            // 
             // sponsorTableAdapter1
             // 
             this.sponsorTableAdapter1.ClearBeforeFill = true;
@@ -362,19 +372,9 @@
             this.deleteSelected.UseVisualStyleBackColor = true;
             this.deleteSelected.Click += new System.EventHandler(this.deleteSelected_Click);
             // 
-            // deleteToolStripMenuItem
+            // participantTableAdapter1
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem1
-            // 
-            this.updateToolStripMenuItem1.Name = "updateToolStripMenuItem1";
-            this.updateToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.updateToolStripMenuItem1.Text = "Update";
-            this.updateToolStripMenuItem1.Click += new System.EventHandler(this.updateToolStripMenuItem1_Click);
+            this.participantTableAdapter1.ClearBeforeFill = true;
             // 
             // MainForm
             // 
@@ -431,7 +431,6 @@
         private RunningClubDataSetTableAdapters.CoachTableAdapter coachTableAdapter1;
         private RunningClubDataSetTableAdapters.DistanceTableAdapter distanceTableAdapter1;
         private RunningClubDataSetTableAdapters.EventTableAdapter eventTableAdapter1;
-        private RunningClubDataSetTableAdapters.ParticipantTableAdapter participantTableAdapter1;
         private RunningClubDataSetTableAdapters.SponsorTableAdapter sponsorTableAdapter1;
         private System.Windows.Forms.BindingSource sponsorBindingSource;
         private System.Windows.Forms.BindingSource clubBindingSource;
@@ -449,6 +448,7 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
+        private RunningClubDataSetTableAdapters.ParticipantTableAdapter participantTableAdapter1;
     }
 }
 
