@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.participantBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.runningClubDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.runningClubDataSet = new Club.RunningClubDataSet();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,17 +58,17 @@
             this.ViewTab = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DBTabs = new System.Windows.Forms.TabControl();
+            this.updateSelected = new System.Windows.Forms.Button();
+            this.deleteSelected = new System.Windows.Forms.Button();
+            this.runningClubDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.runningClubDataSet = new Club.RunningClubDataSet();
             this.clubTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ClubTableAdapter();
             this.coachTableAdapter1 = new Club.RunningClubDataSetTableAdapters.CoachTableAdapter();
             this.distanceTableAdapter1 = new Club.RunningClubDataSetTableAdapters.DistanceTableAdapter();
             this.eventTableAdapter1 = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
             this.sponsorTableAdapter1 = new Club.RunningClubDataSetTableAdapters.SponsorTableAdapter();
-            this.updateSelected = new System.Windows.Forms.Button();
-            this.deleteSelected = new System.Windows.Forms.Button();
             this.participantTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ParticipantTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coachBindingSource)).BeginInit();
@@ -80,22 +78,14 @@
             this.ViewTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.DBTabs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // participantBindingSource
             // 
             this.participantBindingSource.DataMember = "Participant";
             this.participantBindingSource.DataSource = this.runningClubDataSetBindingSource;
-            // 
-            // runningClubDataSetBindingSource
-            // 
-            this.runningClubDataSetBindingSource.DataSource = this.runningClubDataSet;
-            this.runningClubDataSetBindingSource.Position = 0;
-            // 
-            // runningClubDataSet
-            // 
-            this.runningClubDataSet.DataSetName = "RunningClubDataSet";
-            this.runningClubDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // menuStrip1
             // 
@@ -330,26 +320,6 @@
             this.DBTabs.Size = new System.Drawing.Size(968, 541);
             this.DBTabs.TabIndex = 4;
             // 
-            // clubTableAdapter1
-            // 
-            this.clubTableAdapter1.ClearBeforeFill = true;
-            // 
-            // coachTableAdapter1
-            // 
-            this.coachTableAdapter1.ClearBeforeFill = true;
-            // 
-            // distanceTableAdapter1
-            // 
-            this.distanceTableAdapter1.ClearBeforeFill = true;
-            // 
-            // eventTableAdapter1
-            // 
-            this.eventTableAdapter1.ClearBeforeFill = true;
-            // 
-            // sponsorTableAdapter1
-            // 
-            this.sponsorTableAdapter1.ClearBeforeFill = true;
-            // 
             // updateSelected
             // 
             this.updateSelected.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -372,6 +342,36 @@
             this.deleteSelected.UseVisualStyleBackColor = true;
             this.deleteSelected.Click += new System.EventHandler(this.deleteSelected_Click);
             // 
+            // runningClubDataSetBindingSource
+            // 
+            this.runningClubDataSetBindingSource.DataSource = this.runningClubDataSet;
+            this.runningClubDataSetBindingSource.Position = 0;
+            // 
+            // runningClubDataSet
+            // 
+            this.runningClubDataSet.DataSetName = "RunningClubDataSet";
+            this.runningClubDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clubTableAdapter1
+            // 
+            this.clubTableAdapter1.ClearBeforeFill = true;
+            // 
+            // coachTableAdapter1
+            // 
+            this.coachTableAdapter1.ClearBeforeFill = true;
+            // 
+            // distanceTableAdapter1
+            // 
+            this.distanceTableAdapter1.ClearBeforeFill = true;
+            // 
+            // eventTableAdapter1
+            // 
+            this.eventTableAdapter1.ClearBeforeFill = true;
+            // 
+            // sponsorTableAdapter1
+            // 
+            this.sponsorTableAdapter1.ClearBeforeFill = true;
+            // 
             // participantTableAdapter1
             // 
             this.participantTableAdapter1.ClearBeforeFill = true;
@@ -392,8 +392,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).EndInit();
@@ -404,6 +402,8 @@
             this.ViewTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.DBTabs.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

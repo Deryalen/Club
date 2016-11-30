@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Club
@@ -13,6 +14,8 @@ namespace Club
         {
             InitializeComponent();
             _edit = false;
+            idTextBox.Text = (participantTableAdapter.GetData().Last().Id + 1).ToString();
+            idTextBox.Enabled = false;
         }
 
         public EditParticipant(int id, string name, string gender, DateTime dateOfBirth, string coach) : this()
@@ -20,11 +23,19 @@ namespace Club
             _edit = true;
             _id = id;
             idTextBox.Text = id.ToString();
+            idTextBox.Enabled = true;
             nameTextBox.Text = name;
             genderComboBox.Text = gender;
             dateOfBirthDateTimePicker.Value = dateOfBirth;
             coachComboBox.SelectedValue = Convert.ToInt32(coach);
-            if (coach == "") noCoachCheckBox.Checked = true;
+            if (coach == "")
+            {
+                noCoachCheckBox.Checked = true;
+            }
+            else
+            {
+                coachComboBox.SelectedValue = Convert.ToInt32(coach);
+            }
         }
 
         private void EditParticipant_Load(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Club
@@ -12,6 +13,8 @@ namespace Club
         {
             InitializeComponent();
             _edit = false;
+            idTextBox.Text = (coachTableAdapter.GetData().Last().Id + 1).ToString();
+            idTextBox.Enabled = false;
         }
 
         public EditCoach(int id, string name, int club, string specialization) : this()
@@ -19,6 +22,7 @@ namespace Club
             _edit = true;
             _id = id;
             idTextBox.Text = id.ToString();
+            idTextBox.Enabled = true;
             nameTextBox.Text = name;
             clubComboBox.Text = club.ToString();
             specializationTextBox.Text = specialization;
@@ -27,7 +31,6 @@ namespace Club
 
         private void EditCoach_Load(object sender, EventArgs e)
         {
-            runningClubDataSet.EnforceConstraints = false;
             coachTableAdapter.Fill(runningClubDataSet.Coach);
             clubTableAdapter.Fill(runningClubDataSet.Club);
         }

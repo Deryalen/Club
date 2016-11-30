@@ -32,36 +32,48 @@ namespace Club
         {
             dataGridView1.DataSource = eventBindingSource;
             label1.Text = @"Events";
+            updateSelected.Enabled = true;
+            deleteSelected.Enabled = true;
         }
 
         private void participantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = participantBindingSource;
             label1.Text = @"Participants";
+            updateSelected.Enabled = true;
+            deleteSelected.Enabled = true;
         }
 
         private void coachesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = coachBindingSource;
             label1.Text = @"Coaches";
+            updateSelected.Enabled = true;
+            deleteSelected.Enabled = true;
         }
 
         private void clubsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = clubBindingSource;
             label1.Text = @"Clubs";
+            updateSelected.Enabled = true;
+            deleteSelected.Enabled = true;
         }
 
         private void sponsorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = sponsorBindingSource;
             label1.Text = @"Sponsors";
+            updateSelected.Enabled = true;
+            deleteSelected.Enabled = true;
         }
 
         private void distancesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dataGridView1.DataSource = distanceBindingSource;
             label1.Text = @"Distances";
+            updateSelected.Enabled = false;
+            deleteSelected.Enabled = false;
         }
 
         private void UpdateDb()
