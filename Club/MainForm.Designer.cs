@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.participantBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.runningClubDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.runningClubDataSet = new Club.RunningClubDataSet();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,21 +56,24 @@
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sponsorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.SearchFilterTab = new System.Windows.Forms.TabPage();
             this.ViewTab = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.DBTabs = new System.Windows.Forms.TabControl();
             this.updateSelected = new System.Windows.Forms.Button();
             this.deleteSelected = new System.Windows.Forms.Button();
-            this.runningClubDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.runningClubDataSet = new Club.RunningClubDataSet();
             this.clubTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ClubTableAdapter();
             this.coachTableAdapter1 = new Club.RunningClubDataSetTableAdapters.CoachTableAdapter();
             this.distanceTableAdapter1 = new Club.RunningClubDataSetTableAdapters.DistanceTableAdapter();
             this.eventTableAdapter1 = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
             this.sponsorTableAdapter1 = new Club.RunningClubDataSetTableAdapters.SponsorTableAdapter();
             this.participantTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ParticipantTableAdapter();
+            this.searchByComboBox = new System.Windows.Forms.ComboBox();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.searchDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.filterButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coachBindingSource)).BeginInit();
@@ -78,14 +83,22 @@
             this.ViewTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.DBTabs.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // participantBindingSource
             // 
             this.participantBindingSource.DataMember = "Participant";
             this.participantBindingSource.DataSource = this.runningClubDataSetBindingSource;
+            // 
+            // runningClubDataSetBindingSource
+            // 
+            this.runningClubDataSetBindingSource.DataSource = this.runningClubDataSet;
+            this.runningClubDataSetBindingSource.Position = 0;
+            // 
+            // runningClubDataSet
+            // 
+            this.runningClubDataSet.DataSetName = "RunningClubDataSet";
+            this.runningClubDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // menuStrip1
             // 
@@ -264,17 +277,6 @@
             this.label1.Size = new System.Drawing.Size(0, 26);
             this.label1.TabIndex = 3;
             // 
-            // SearchFilterTab
-            // 
-            this.SearchFilterTab.Font = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchFilterTab.Location = new System.Drawing.Point(4, 26);
-            this.SearchFilterTab.Name = "SearchFilterTab";
-            this.SearchFilterTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SearchFilterTab.Size = new System.Drawing.Size(960, 511);
-            this.SearchFilterTab.TabIndex = 1;
-            this.SearchFilterTab.Text = "Search and Filter";
-            this.SearchFilterTab.UseVisualStyleBackColor = true;
-            // 
             // ViewTab
             // 
             this.ViewTab.Controls.Add(this.dataGridView1);
@@ -312,7 +314,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DBTabs.Controls.Add(this.ViewTab);
-            this.DBTabs.Controls.Add(this.SearchFilterTab);
             this.DBTabs.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DBTabs.Location = new System.Drawing.Point(12, 57);
             this.DBTabs.Name = "DBTabs";
@@ -342,16 +343,6 @@
             this.deleteSelected.UseVisualStyleBackColor = true;
             this.deleteSelected.Click += new System.EventHandler(this.deleteSelected_Click);
             // 
-            // runningClubDataSetBindingSource
-            // 
-            this.runningClubDataSetBindingSource.DataSource = this.runningClubDataSet;
-            this.runningClubDataSetBindingSource.Position = 0;
-            // 
-            // runningClubDataSet
-            // 
-            this.runningClubDataSet.DataSetName = "RunningClubDataSet";
-            this.runningClubDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // clubTableAdapter1
             // 
             this.clubTableAdapter1.ClearBeforeFill = true;
@@ -376,11 +367,54 @@
             // 
             this.participantTableAdapter1.ClearBeforeFill = true;
             // 
+            // searchByComboBox
+            // 
+            this.searchByComboBox.FormattingEnabled = true;
+            this.searchByComboBox.Items.AddRange(new object[] {
+            "Id",
+            "Name",
+            "Date of birth",
+            "Coach"});
+            this.searchByComboBox.Location = new System.Drawing.Point(164, 27);
+            this.searchByComboBox.Name = "searchByComboBox";
+            this.searchByComboBox.Size = new System.Drawing.Size(121, 21);
+            this.searchByComboBox.TabIndex = 7;
+            this.searchByComboBox.SelectedIndexChanged += new System.EventHandler(this.searchByComboBox_SelectedIndexChanged);
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(292, 27);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(306, 20);
+            this.searchTextBox.TabIndex = 8;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
+            // 
+            // searchDateTimePicker
+            // 
+            this.searchDateTimePicker.Location = new System.Drawing.Point(292, 27);
+            this.searchDateTimePicker.Name = "searchDateTimePicker";
+            this.searchDateTimePicker.Size = new System.Drawing.Size(306, 20);
+            this.searchDateTimePicker.TabIndex = 9;
+            // 
+            // filterButton
+            // 
+            this.filterButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterButton.Location = new System.Drawing.Point(604, 27);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(119, 50);
+            this.filterButton.TabIndex = 10;
+            this.filterButton.Text = "Filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 610);
+            this.Controls.Add(this.filterButton);
+            this.Controls.Add(this.searchDateTimePicker);
+            this.Controls.Add(this.searchTextBox);
+            this.Controls.Add(this.searchByComboBox);
             this.Controls.Add(this.deleteSelected);
             this.Controls.Add(this.updateSelected);
             this.Controls.Add(this.DBTabs);
@@ -392,6 +426,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).EndInit();
@@ -402,8 +438,6 @@
             this.ViewTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.DBTabs.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,7 +472,6 @@
         private System.Windows.Forms.BindingSource distanceBindingSource;
         private System.Windows.Forms.BindingSource eventBindingSource;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage SearchFilterTab;
         private System.Windows.Forms.TabPage ViewTab;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabControl DBTabs;
@@ -449,6 +482,10 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
         private RunningClubDataSetTableAdapters.ParticipantTableAdapter participantTableAdapter1;
+        private System.Windows.Forms.ComboBox searchByComboBox;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.DateTimePicker searchDateTimePicker;
+        private System.Windows.Forms.Button filterButton;
     }
 }
 

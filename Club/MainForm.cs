@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Club
@@ -279,6 +280,37 @@ namespace Club
                 sponsorTableAdapter1.Fill(runningClubDataSet.Sponsor);
                 runningClubDataSet.AcceptChanges();
                 edit = true;
+            }
+        }
+
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            switch (searchByComboBox.Text)
+            {
+                case "Id":
+                    Regex x = new Regex(@"^[0-9]");
+                    if (x.IsMatch(searchTextBox.Text))
+                        participantTableAdapter1.FillById(runningClubDataSet.Participant, searchTextBox.Text);
+                    if (searchTextBox.Text == String.Empty)
+                        participantTableAdapter1.Fill(runningClubDataSet.Participant);
+                    break;
+                case "Name":
+                    participantTableAdapter1.FillByName(runningClubDataSet.Participant, searchTextBox.Text);
+                    break;
+            }
+        }
+
+        private void searchByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (searchByComboBox.Text == "Date of birth")
+            {
+                searchTextBox.Visible = false;
+                searchDateTimePicker.Visible = true;
+            }
+            else
+            {
+                searchTextBox.Visible = true;
+                searchDateTimePicker.Visible = false;
             }
         }
     }

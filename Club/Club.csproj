@@ -92,6 +92,12 @@
     <Compile Include="EditSponsor.Designer.cs">
       <DependentUpon>EditSponsor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilterParticipant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterParticipant.Designer.cs">
+      <DependentUpon>FilterParticipant.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,7 +109,7 @@
     <Compile Include="RunningClubDataSet.cs">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="RunningClubDataSet.Designer.cs">
+    <Compile Include="RunningClubDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditSponsor.resx">
       <DependentUpon>EditSponsor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterParticipant.resx">
+      <DependentUpon>FilterParticipant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -150,7 +159,7 @@
     <None Include="RunningClubDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RunningClubDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>RunningClubDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="RunningClubDataSet.xss">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
