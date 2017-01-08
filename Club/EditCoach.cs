@@ -13,7 +13,14 @@ namespace Club
         {
             InitializeComponent();
             _edit = false;
-            idTextBox.Text = (coachTableAdapter.GetData().Last().Id + 1).ToString();
+            try
+            {
+                idTextBox.Text = (coachTableAdapter.GetData().Last().Id + 1).ToString();
+            }
+            catch (InvalidOperationException ex)
+            {
+                idTextBox.Text = "0";
+            }
             idTextBox.Enabled = false;
         }
 
@@ -53,7 +60,7 @@ namespace Club
                     }
                     else
                     {
-                        coachTableAdapter.UpdateQuery(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
+                        coachTableAdapter.Insert(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
                             Convert.ToInt32(clubComboBox.SelectedValue),
                             "");
                     }
@@ -67,7 +74,7 @@ namespace Club
                     }
                     else
                     {
-                        coachTableAdapter.UpdateQuery(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
+                        coachTableAdapter.Insert(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
                             Convert.ToInt32(clubComboBox.SelectedValue),
                             specializationTextBox.Text);
                     }

@@ -48,6 +48,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.xtra.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -62,6 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddHeatsToEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddHeatsToEvent.Designer.cs">
+      <DependentUpon>AddHeatsToEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClubReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClubReport.Designer.cs">
+      <DependentUpon>ClubReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditClub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,11 +110,23 @@
     <Compile Include="EditParticipant.Designer.cs">
       <DependentUpon>EditParticipant.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditSponsor.cs">
+    <Compile Include="FillResult.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditSponsor.Designer.cs">
-      <DependentUpon>EditSponsor.cs</DependentUpon>
+    <Compile Include="FillResult.Designer.cs">
+      <DependentUpon>FillResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterCoach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterCoach.Designer.cs">
+      <DependentUpon>FilterCoach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterEvent.Designer.cs">
+      <DependentUpon>FilterEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterParticipant.cs">
       <SubType>Form</SubType>
@@ -106,14 +142,45 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="RunningClubDataSet.cs">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="RunningClubDataSet1.Designer.cs">
+    <Compile Include="RunningClubDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Stats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stats.Designer.cs">
+      <DependentUpon>Stats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Training.cs" />
+    <Compile Include="TrainingPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrainingPlan.Designer.cs">
+      <DependentUpon>TrainingPlan.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddHeatsToEvent.resx">
+      <DependentUpon>AddHeatsToEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClubReport.resx">
+      <DependentUpon>ClubReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditClub.resx">
       <DependentUpon>EditClub.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,8 +193,14 @@
     <EmbeddedResource Include="EditParticipant.resx">
       <DependentUpon>EditParticipant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditSponsor.resx">
-      <DependentUpon>EditSponsor.cs</DependentUpon>
+    <EmbeddedResource Include="FillResult.resx">
+      <DependentUpon>FillResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterCoach.resx">
+      <DependentUpon>FilterCoach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterEvent.resx">
+      <DependentUpon>FilterEvent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterParticipant.resx">
       <DependentUpon>FilterParticipant.cs</DependentUpon>
@@ -144,6 +217,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stats.resx">
+      <DependentUpon>Stats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrainingPlan.resx">
+      <DependentUpon>TrainingPlan.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,7 +244,7 @@
     <None Include="RunningClubDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RunningClubDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>RunningClubDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="RunningClubDataSet.xss">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>

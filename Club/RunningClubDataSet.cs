@@ -4,15 +4,19 @@
 
     partial class RunningClubDataSet
     {
-        partial class EventDistancesViewDataTable
-        {
-        }
     }
 }
 
-namespace Club.RunningClubDataSetTableAdapters {
-    
-    
-    public partial class EventDistancesViewTableAdapter {
+namespace Club.RunningClubDataSetTableAdapters
+{
+    partial class Club1TableAdapter
+    {
+    }
+
+    partial class HeatParticipantsTableAdapter
+    {
+    }
+
+    public partial class ClubTableAdapter {
     }
 }

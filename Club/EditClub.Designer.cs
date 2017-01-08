@@ -51,6 +51,46 @@
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            idLabel.Location = new System.Drawing.Point(12, 9);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(22, 16);
+            idLabel.TabIndex = 1;
+            idLabel.Text = "Id:";
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nameLabel.Location = new System.Drawing.Point(12, 35);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(48, 16);
+            nameLabel.TabIndex = 3;
+            nameLabel.Text = "Name:";
+            // 
+            // foundationDateLabel
+            // 
+            foundationDateLabel.AutoSize = true;
+            foundationDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            foundationDateLabel.Location = new System.Drawing.Point(12, 62);
+            foundationDateLabel.Name = "foundationDateLabel";
+            foundationDateLabel.Size = new System.Drawing.Size(110, 16);
+            foundationDateLabel.TabIndex = 5;
+            foundationDateLabel.Text = "Foundation Date:";
+            // 
+            // cityLabel
+            // 
+            cityLabel.AutoSize = true;
+            cityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            cityLabel.Location = new System.Drawing.Point(12, 87);
+            cityLabel.Name = "cityLabel";
+            cityLabel.Size = new System.Drawing.Size(33, 16);
+            cityLabel.TabIndex = 7;
+            cityLabel.Text = "City:";
+            // 
             // runningClubDataSet
             // 
             this.runningClubDataSet.DataSetName = "RunningClubDataSet";
@@ -71,45 +111,11 @@
             this.tableAdapterManager.ClubTableAdapter = this.clubTableAdapter;
             this.tableAdapterManager.CoachTableAdapter = null;
             this.tableAdapterManager.DistanceTableAdapter = null;
-            this.tableAdapterManager.EventDistancesTableAdapter = null;
-            this.tableAdapterManager.EventHeatsTableAdapter = null;
             this.tableAdapterManager.EventTableAdapter = null;
             this.tableAdapterManager.HeatParticipantsTableAdapter = null;
             this.tableAdapterManager.HeatTableAdapter = null;
             this.tableAdapterManager.ParticipantTableAdapter = null;
-            this.tableAdapterManager.ResultTableAdapter = null;
-            this.tableAdapterManager.SponsorTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Club.RunningClubDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            idLabel.Location = new System.Drawing.Point(12, 9);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(31, 14);
-            idLabel.TabIndex = 1;
-            idLabel.Text = "Id:";
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            nameLabel.Location = new System.Drawing.Point(12, 35);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(47, 14);
-            nameLabel.TabIndex = 3;
-            nameLabel.Text = "Name:";
-            // 
-            // foundationDateLabel
-            // 
-            foundationDateLabel.AutoSize = true;
-            foundationDateLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            foundationDateLabel.Location = new System.Drawing.Point(12, 62);
-            foundationDateLabel.Name = "foundationDateLabel";
-            foundationDateLabel.Size = new System.Drawing.Size(131, 14);
-            foundationDateLabel.TabIndex = 5;
-            foundationDateLabel.Text = "Foundation Date:";
             // 
             // foundationDateDateTimePicker
             // 
@@ -118,16 +124,6 @@
             this.foundationDateDateTimePicker.Name = "foundationDateDateTimePicker";
             this.foundationDateDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.foundationDateDateTimePicker.TabIndex = 6;
-            // 
-            // cityLabel
-            // 
-            cityLabel.AutoSize = true;
-            cityLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            cityLabel.Location = new System.Drawing.Point(12, 87);
-            cityLabel.Name = "cityLabel";
-            cityLabel.Size = new System.Drawing.Size(47, 14);
-            cityLabel.TabIndex = 7;
-            cityLabel.Text = "City:";
             // 
             // idTextBox
             // 
@@ -152,7 +148,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmButton.Location = new System.Drawing.Point(12, 118);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(119, 50);
@@ -163,7 +159,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(237, 118);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(119, 50);
@@ -188,7 +184,7 @@
             this.Controls.Add(this.foundationDateDateTimePicker);
             this.Controls.Add(cityLabel);
             this.Name = "EditClub";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditClub";
             this.Load += new System.EventHandler(this.EditClub_Load);
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();

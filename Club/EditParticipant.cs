@@ -27,7 +27,6 @@ namespace Club
             nameTextBox.Text = name;
             genderComboBox.Text = gender;
             dateOfBirthDateTimePicker.Value = dateOfBirth;
-            coachComboBox.SelectedValue = Convert.ToInt32(coach);
             if (coach == "")
             {
                 noCoachCheckBox.Checked = true;
@@ -41,7 +40,7 @@ namespace Club
         private void EditParticipant_Load(object sender, EventArgs e)
         {
             coachTableAdapter.Fill(runningClubDataSet.Coach);
-            participantTableAdapter.Fill(runningClubDataSet.Participant);
+            participantTableAdapter.FillWithCoach(runningClubDataSet.Participant);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)

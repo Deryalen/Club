@@ -58,40 +58,40 @@
             // idLabel
             // 
             idLabel.AutoSize = true;
-            idLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             idLabel.Location = new System.Drawing.Point(12, 15);
             idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(31, 14);
+            idLabel.Size = new System.Drawing.Size(22, 16);
             idLabel.TabIndex = 1;
             idLabel.Text = "Id:";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             nameLabel.Location = new System.Drawing.Point(12, 41);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(47, 14);
+            nameLabel.Size = new System.Drawing.Size(48, 16);
             nameLabel.TabIndex = 3;
             nameLabel.Text = "Name:";
             // 
             // clubLabel
             // 
             clubLabel.AutoSize = true;
-            clubLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            clubLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             clubLabel.Location = new System.Drawing.Point(12, 67);
             clubLabel.Name = "clubLabel";
-            clubLabel.Size = new System.Drawing.Size(47, 14);
+            clubLabel.Size = new System.Drawing.Size(38, 16);
             clubLabel.TabIndex = 5;
             clubLabel.Text = "Club:";
             // 
             // specializationLabel
             // 
             specializationLabel.AutoSize = true;
-            specializationLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            specializationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             specializationLabel.Location = new System.Drawing.Point(12, 93);
             specializationLabel.Name = "specializationLabel";
-            specializationLabel.Size = new System.Drawing.Size(127, 14);
+            specializationLabel.Size = new System.Drawing.Size(95, 16);
             specializationLabel.TabIndex = 7;
             specializationLabel.Text = "Specialization:";
             // 
@@ -127,7 +127,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmButton.Location = new System.Drawing.Point(12, 147);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(119, 50);
@@ -138,7 +138,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(199, 147);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(119, 50);
@@ -150,10 +150,10 @@
             // noSpecializationCheckBox
             // 
             this.noSpecializationCheckBox.AutoSize = true;
-            this.noSpecializationCheckBox.Font = new System.Drawing.Font("OCR-A BT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noSpecializationCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noSpecializationCheckBox.Location = new System.Drawing.Point(156, 116);
             this.noSpecializationCheckBox.Name = "noSpecializationCheckBox";
-            this.noSpecializationCheckBox.Size = new System.Drawing.Size(139, 16);
+            this.noSpecializationCheckBox.Size = new System.Drawing.Size(106, 17);
             this.noSpecializationCheckBox.TabIndex = 16;
             this.noSpecializationCheckBox.Text = "No specialization";
             this.noSpecializationCheckBox.UseVisualStyleBackColor = true;
@@ -171,14 +171,10 @@
             this.tableAdapterManager.CoachTableAdapter = null;
             this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.DistanceTableAdapter = null;
-            this.tableAdapterManager.EventDistancesTableAdapter = null;
-            this.tableAdapterManager.EventHeatsTableAdapter = null;
             this.tableAdapterManager.EventTableAdapter = null;
             this.tableAdapterManager.HeatParticipantsTableAdapter = null;
             this.tableAdapterManager.HeatTableAdapter = null;
             this.tableAdapterManager.ParticipantTableAdapter = null;
-            this.tableAdapterManager.ResultTableAdapter = null;
-            this.tableAdapterManager.SponsorTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Club.RunningClubDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // clubComboBox
@@ -218,6 +214,7 @@
             this.Controls.Add(clubLabel);
             this.Controls.Add(specializationLabel);
             this.Name = "EditCoach";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditCoach";
             this.Load += new System.EventHandler(this.EditCoach_Load);
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();

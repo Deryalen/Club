@@ -17,7 +17,7 @@ namespace Club
             idTextBox.Enabled = false;
         }
 
-        public EditEvent(int id, string name, DateTime date, int level, string type, int sponsor) : this()
+        public EditEvent(int id, string name, DateTime date, int level, string type) : this()
         {
             _edit = true;
             _id = id;
@@ -27,13 +27,11 @@ namespace Club
             dateDateTimePicker.Value = date;
             levelComboBox.Text = level.ToString();
             typeComboBox.Text = type;
-            sponsorComboBox.Text = sponsor.ToString();
-            if (sponsor.ToString() == "") noSponsorCheckBox.Checked = true;
+            dataGridView1.DataSource = dataTable2TableAdapter1.GetData(_id);
         }
 
         private void EditEvent_Load(object sender, EventArgs e)
         {
-            sponsorTableAdapter.Fill(runningClubDataSet.Sponsor);
             eventTableAdapter.Fill(runningClubDataSet.Event);
         }
 
@@ -41,34 +39,18 @@ namespace Club
         {
             try
             {
-                if (noSponsorCheckBox.Checked)
-                {
-                    if (_edit)
+                if (_edit)
                     {
                         eventTableAdapter.UpdateQuery(_id, nameTextBox.Text, dateDateTimePicker.Value.ToString(),
-                            Convert.ToInt32(levelComboBox.SelectedValue), typeComboBox.SelectedText, null);
+                            Convert.ToInt32(levelComboBox.Text), typeComboBox.Text);
                     }
-                    else
-                    {
-                        eventTableAdapter.UpdateQuery(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
-                            dateDateTimePicker.Value.ToString(),
-                            Convert.ToInt32(levelComboBox.SelectedValue), typeComboBox.SelectedText, null);
-                    }
-                }
                 else
                 {
-                    if (_edit)
-                    {
-                        eventTableAdapter.UpdateQuery(_id, nameTextBox.Text, dateDateTimePicker.Value.ToString(),
-                            Convert.ToInt32(levelComboBox.SelectedValue), typeComboBox.SelectedText,
-                            Convert.ToInt32(sponsorComboBox.SelectedValue));
+                    eventTableAdapter.Insert(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
+                            dateDateTimePicker.Value,
+                            Convert.ToInt32(levelComboBox.Text), typeComboBox.Text); 
                     }
-                    else
-                    {
-                        eventTableAdapter.UpdateQuery(Convert.ToInt32(idTextBox.Text), nameTextBox.Text, dateDateTimePicker.Value.ToString(),
-                            Convert.ToInt32(levelComboBox.SelectedValue), typeComboBox.SelectedText, Convert.ToInt32(sponsorComboBox.SelectedValue));
-                    }
-                }
+                
                 Close();
             }
             catch (Exception ex)
@@ -82,9 +64,10 @@ namespace Club
             Close();
         }
 
-        private void noSponsorCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            sponsorComboBox.Enabled = !noSponsorCheckBox.Checked;
+            var inst = new FillResult(_id, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value), Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value), dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            inst.ShowDialog();
         }
     }
 }

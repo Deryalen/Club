@@ -40,6 +40,7 @@
             this.coachTableAdapter = new Club.RunningClubDataSetTableAdapters.CoachTableAdapter();
             this.genderComboBox = new System.Windows.Forms.ComboBox();
             this.coachComboBox = new System.Windows.Forms.ComboBox();
+            this.coachBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.runningClubDataSet = new Club.RunningClubDataSet();
             this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -47,64 +48,63 @@
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.dateOfBirthDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.coachBindingSource = new System.Windows.Forms.BindingSource(this.components);
             idLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             genderLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
             coachLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coachBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // idLabel
             // 
             idLabel.AutoSize = true;
-            idLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            idLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             idLabel.Location = new System.Drawing.Point(12, 15);
             idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(31, 14);
+            idLabel.Size = new System.Drawing.Size(22, 16);
             idLabel.TabIndex = 1;
             idLabel.Text = "Id:";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             nameLabel.Location = new System.Drawing.Point(12, 41);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(47, 14);
+            nameLabel.Size = new System.Drawing.Size(48, 16);
             nameLabel.TabIndex = 3;
             nameLabel.Text = "Name:";
             // 
             // genderLabel
             // 
             genderLabel.AutoSize = true;
-            genderLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            genderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             genderLabel.Location = new System.Drawing.Point(12, 67);
             genderLabel.Name = "genderLabel";
-            genderLabel.Size = new System.Drawing.Size(63, 14);
+            genderLabel.Size = new System.Drawing.Size(56, 16);
             genderLabel.TabIndex = 5;
             genderLabel.Text = "Gender:";
             // 
             // dateOfBirthLabel
             // 
             dateOfBirthLabel.AutoSize = true;
-            dateOfBirthLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dateOfBirthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dateOfBirthLabel.Location = new System.Drawing.Point(12, 94);
             dateOfBirthLabel.Name = "dateOfBirthLabel";
-            dateOfBirthLabel.Size = new System.Drawing.Size(111, 14);
+            dateOfBirthLabel.Size = new System.Drawing.Size(85, 16);
             dateOfBirthLabel.TabIndex = 7;
             dateOfBirthLabel.Text = "Date Of Birth:";
             // 
             // coachLabel
             // 
             coachLabel.AutoSize = true;
-            coachLabel.Font = new System.Drawing.Font("OCR-A BT", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            coachLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             coachLabel.Location = new System.Drawing.Point(12, 119);
             coachLabel.Name = "coachLabel";
-            coachLabel.Size = new System.Drawing.Size(55, 14);
+            coachLabel.Size = new System.Drawing.Size(50, 16);
             coachLabel.TabIndex = 9;
             coachLabel.Text = "Coach:";
             // 
@@ -118,14 +118,10 @@
             this.tableAdapterManager.ClubTableAdapter = null;
             this.tableAdapterManager.CoachTableAdapter = this.coachTableAdapter;
             this.tableAdapterManager.DistanceTableAdapter = null;
-            this.tableAdapterManager.EventDistancesTableAdapter = null;
-            this.tableAdapterManager.EventHeatsTableAdapter = null;
             this.tableAdapterManager.EventTableAdapter = null;
             this.tableAdapterManager.HeatParticipantsTableAdapter = null;
             this.tableAdapterManager.HeatTableAdapter = null;
             this.tableAdapterManager.ParticipantTableAdapter = this.participantTableAdapter;
-            this.tableAdapterManager.ResultTableAdapter = null;
-            this.tableAdapterManager.SponsorTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Club.RunningClubDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // coachTableAdapter
@@ -156,6 +152,11 @@
             this.coachComboBox.TabIndex = 12;
             this.coachComboBox.ValueMember = "Id";
             // 
+            // coachBindingSource
+            // 
+            this.coachBindingSource.DataMember = "Coach";
+            this.coachBindingSource.DataSource = this.runningClubDataSet;
+            // 
             // runningClubDataSet
             // 
             this.runningClubDataSet.DataSetName = "RunningClubDataSet";
@@ -163,7 +164,7 @@
             // 
             // confirmButton
             // 
-            this.confirmButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.confirmButton.Location = new System.Drawing.Point(12, 165);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(119, 50);
@@ -174,7 +175,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Font = new System.Drawing.Font("OCR-A BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(210, 165);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(119, 50);
@@ -186,10 +187,10 @@
             // noCoachCheckBox
             // 
             this.noCoachCheckBox.AutoSize = true;
-            this.noCoachCheckBox.Font = new System.Drawing.Font("OCR-A BT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noCoachCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.noCoachCheckBox.Location = new System.Drawing.Point(129, 143);
             this.noCoachCheckBox.Name = "noCoachCheckBox";
-            this.noCoachCheckBox.Size = new System.Drawing.Size(76, 16);
+            this.noCoachCheckBox.Size = new System.Drawing.Size(73, 17);
             this.noCoachCheckBox.TabIndex = 15;
             this.noCoachCheckBox.Text = "No coach";
             this.noCoachCheckBox.UseVisualStyleBackColor = true;
@@ -216,11 +217,6 @@
             this.dateOfBirthDateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateOfBirthDateTimePicker.TabIndex = 19;
             // 
-            // coachBindingSource
-            // 
-            this.coachBindingSource.DataMember = "Coach";
-            this.coachBindingSource.DataSource = this.runningClubDataSet;
-            // 
             // EditParticipant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,12 +236,12 @@
             this.Controls.Add(dateOfBirthLabel);
             this.Controls.Add(coachLabel);
             this.Name = "EditParticipant";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditParticipant";
             this.Load += new System.EventHandler(this.EditParticipant_Load);
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coachBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
