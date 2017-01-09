@@ -19,6 +19,8 @@ namespace Club
         {
             InitializeComponent();
             _edit = false;
+            idTextBox.Text = (clubTableAdapter.GetData().Last().Id + 1).ToString();
+            idTextBox.Enabled = false;
         }
 
         public EditClub(int id, string name, DateTime foundationDate, string city) : this()

@@ -29,10 +29,8 @@ namespace Club
             _edit = true;
             _id = id;
             idTextBox.Text = id.ToString();
-            idTextBox.Enabled = true;
             nameTextBox.Text = name;
             clubComboBox.Text = club.ToString();
-            specializationTextBox.Text = specialization;
             if (specialization == "") noSpecializationCheckBox.Checked = true;
         }
 
@@ -51,7 +49,7 @@ namespace Club
         {
             try
             {
-                if (noSpecializationCheckBox.Checked || specializationTextBox.Text == "")
+                if (noSpecializationCheckBox.Checked)
                 {
                     if (_edit)
                     {
@@ -65,18 +63,18 @@ namespace Club
                             "");
                     }
                 }
-                else if (!noSpecializationCheckBox.Checked && specializationTextBox.Text != "")
+                else if (!noSpecializationCheckBox.Checked && specializationComboBox.Text != "")
                 {
                     if (_edit)
                     {
                         coachTableAdapter.UpdateQuery(_id, nameTextBox.Text, Convert.ToInt32(clubComboBox.SelectedValue),
-                            specializationTextBox.Text);
+                            specializationComboBox.SelectedItem.ToString());
                     }
                     else
                     {
                         coachTableAdapter.Insert(Convert.ToInt32(idTextBox.Text), nameTextBox.Text,
                             Convert.ToInt32(clubComboBox.SelectedValue),
-                            specializationTextBox.Text);
+                            specializationComboBox.Text);
                     }
                 }
                 Close();
@@ -89,7 +87,7 @@ namespace Club
 
         private void noSpecializationCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            specializationTextBox.Enabled = !noSpecializationCheckBox.Checked;
+            specializationComboBox.Enabled = !noSpecializationCheckBox.Checked;
         }
     }
 }

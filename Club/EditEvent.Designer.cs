@@ -170,7 +170,8 @@
             this.typeComboBox.Items.AddRange(new object[] {
             "Кубок",
             "Чемпионат",
-            "Пробег"});
+            "Пробег",
+            "Марафон"});
             this.typeComboBox.Location = new System.Drawing.Point(134, 110);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(294, 21);

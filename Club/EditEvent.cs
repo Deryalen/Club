@@ -22,7 +22,6 @@ namespace Club
             _edit = true;
             _id = id;
             idTextBox.Text = id.ToString();
-            idTextBox.Enabled = true;
             nameTextBox.Text = name;
             dateDateTimePicker.Value = date;
             levelComboBox.Text = level.ToString();
@@ -66,8 +65,17 @@ namespace Club
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var inst = new FillResult(_id, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value), Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value), dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-            inst.ShowDialog();
+            if (eventTableAdapter.GetDataBy1(_id).Single().Date < DateTime.Today)
+            {
+                var inst = new FillResult(_id, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value),
+                    Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value),
+                    dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+                inst.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(@"The event is not finished");
+            }
         }
     }
 }

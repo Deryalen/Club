@@ -157,7 +157,7 @@
     <Compile Include="RunningClubDataSet.cs">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="RunningClubDataSet.Designer.cs">
+    <Compile Include="RunningClubDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>
@@ -244,7 +244,7 @@
     <None Include="RunningClubDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>RunningClubDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>RunningClubDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="RunningClubDataSet.xss">
       <DependentUpon>RunningClubDataSet.xsd</DependentUpon>

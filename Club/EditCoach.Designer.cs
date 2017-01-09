@@ -37,7 +37,6 @@
             this.coachTableAdapter = new Club.RunningClubDataSetTableAdapters.CoachTableAdapter();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.specializationTextBox = new System.Windows.Forms.TextBox();
             this.confirmButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.noSpecializationCheckBox = new System.Windows.Forms.CheckBox();
@@ -46,6 +45,7 @@
             this.clubComboBox = new System.Windows.Forms.ComboBox();
             this.clubBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clubTableAdapter = new Club.RunningClubDataSetTableAdapters.ClubTableAdapter();
+            this.specializationComboBox = new System.Windows.Forms.ComboBox();
             idLabel = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
             clubLabel = new System.Windows.Forms.Label();
@@ -117,13 +117,6 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(162, 20);
             this.nameTextBox.TabIndex = 10;
-            // 
-            // specializationTextBox
-            // 
-            this.specializationTextBox.Location = new System.Drawing.Point(156, 90);
-            this.specializationTextBox.Name = "specializationTextBox";
-            this.specializationTextBox.Size = new System.Drawing.Size(162, 20);
-            this.specializationTextBox.TabIndex = 12;
             // 
             // confirmButton
             // 
@@ -197,16 +190,31 @@
             // 
             this.clubTableAdapter.ClearBeforeFill = true;
             // 
+            // specializationComboBox
+            // 
+            this.specializationComboBox.FormattingEnabled = true;
+            this.specializationComboBox.Items.AddRange(new object[] {
+            "Sprint",
+            "Middle",
+            "Long",
+            "Pole Vault",
+            "High Jump",
+            "Long Jump"});
+            this.specializationComboBox.Location = new System.Drawing.Point(156, 90);
+            this.specializationComboBox.Name = "specializationComboBox";
+            this.specializationComboBox.Size = new System.Drawing.Size(162, 21);
+            this.specializationComboBox.TabIndex = 18;
+            // 
             // EditCoach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(330, 209);
+            this.Controls.Add(this.specializationComboBox);
             this.Controls.Add(this.clubComboBox);
             this.Controls.Add(this.noSpecializationCheckBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.confirmButton);
-            this.Controls.Add(this.specializationTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(idLabel);
@@ -233,12 +241,12 @@
         private RunningClubDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.TextBox specializationTextBox;
         private System.Windows.Forms.Button confirmButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.CheckBox noSpecializationCheckBox;
         private System.Windows.Forms.ComboBox clubComboBox;
         private RunningClubDataSetTableAdapters.ClubTableAdapter clubTableAdapter;
         private System.Windows.Forms.BindingSource clubBindingSource;
+        private System.Windows.Forms.ComboBox specializationComboBox;
     }
 }
