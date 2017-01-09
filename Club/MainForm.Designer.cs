@@ -61,7 +61,7 @@
             this.DBTabs = new System.Windows.Forms.TabControl();
             this.updateSelected = new System.Windows.Forms.Button();
             this.deleteSelected = new System.Windows.Forms.Button();
-            this.searchByComboBox = new System.Windows.Forms.ComboBox();
+            this.searchEventComboBox = new System.Windows.Forms.ComboBox();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.filterButton = new System.Windows.Forms.Button();
@@ -72,6 +72,9 @@
             this.distanceTableAdapter1 = new Club.RunningClubDataSetTableAdapters.DistanceTableAdapter();
             this.eventTableAdapter1 = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
             this.participantTableAdapter1 = new Club.RunningClubDataSetTableAdapters.ParticipantTableAdapter();
+            this.searchClubComboBox = new System.Windows.Forms.ComboBox();
+            this.searchCoachComboBox = new System.Windows.Forms.ComboBox();
+            this.searchParticipantComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
@@ -184,7 +187,7 @@
             this.eventsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addHeatsToolStripMenuItem});
             this.eventsToolStripMenuItem.Name = "eventsToolStripMenuItem";
-            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eventsToolStripMenuItem.Text = "Events";
             this.eventsToolStripMenuItem.Click += new System.EventHandler(this.eventsToolStripMenuItem_Click);
             // 
@@ -198,28 +201,28 @@
             // participantsToolStripMenuItem
             // 
             this.participantsToolStripMenuItem.Name = "participantsToolStripMenuItem";
-            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.participantsToolStripMenuItem.Text = "Participants";
             this.participantsToolStripMenuItem.Click += new System.EventHandler(this.participantsToolStripMenuItem_Click);
             // 
             // coachesToolStripMenuItem
             // 
             this.coachesToolStripMenuItem.Name = "coachesToolStripMenuItem";
-            this.coachesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.coachesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.coachesToolStripMenuItem.Text = "Coaches";
             this.coachesToolStripMenuItem.Click += new System.EventHandler(this.coachesToolStripMenuItem_Click);
             // 
             // clubsToolStripMenuItem
             // 
             this.clubsToolStripMenuItem.Name = "clubsToolStripMenuItem";
-            this.clubsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.clubsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clubsToolStripMenuItem.Text = "Clubs";
             this.clubsToolStripMenuItem.Click += new System.EventHandler(this.clubsToolStripMenuItem_Click);
             // 
             // distancesToolStripMenuItem
             // 
             this.distancesToolStripMenuItem.Name = "distancesToolStripMenuItem";
-            this.distancesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.distancesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.distancesToolStripMenuItem.Text = "Distances";
             this.distancesToolStripMenuItem.Click += new System.EventHandler(this.distancesToolStripMenuItem_Click);
             // 
@@ -353,28 +356,22 @@
             this.deleteSelected.UseVisualStyleBackColor = true;
             this.deleteSelected.Click += new System.EventHandler(this.deleteSelected_Click);
             // 
-            // searchByComboBox
+            // searchEventComboBox
             // 
-            this.searchByComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchByComboBox.Enabled = false;
-            this.searchByComboBox.FormattingEnabled = true;
-            this.searchByComboBox.Items.AddRange(new object[] {
+            this.searchEventComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchEventComboBox.Enabled = false;
+            this.searchEventComboBox.FormattingEnabled = true;
+            this.searchEventComboBox.Items.AddRange(new object[] {
             "Id",
             "Name",
-            "Date of birth",
-            "Coach",
-            "Specialization",
-            "Club",
-            "Foundation Date",
-            "City",
             "Date",
             "Type",
             "Level"});
-            this.searchByComboBox.Location = new System.Drawing.Point(348, 50);
-            this.searchByComboBox.Name = "searchByComboBox";
-            this.searchByComboBox.Size = new System.Drawing.Size(125, 21);
-            this.searchByComboBox.TabIndex = 7;
-            this.searchByComboBox.SelectedIndexChanged += new System.EventHandler(this.searchByComboBox_SelectedIndexChanged);
+            this.searchEventComboBox.Location = new System.Drawing.Point(348, 50);
+            this.searchEventComboBox.Name = "searchEventComboBox";
+            this.searchEventComboBox.Size = new System.Drawing.Size(125, 21);
+            this.searchEventComboBox.TabIndex = 7;
+            this.searchEventComboBox.SelectedIndexChanged += new System.EventHandler(this.searchByComboBox_SelectedIndexChanged);
             // 
             // searchTextBox
             // 
@@ -451,17 +448,60 @@
             // 
             this.participantTableAdapter1.ClearBeforeFill = true;
             // 
+            // searchClubComboBox
+            // 
+            this.searchClubComboBox.FormattingEnabled = true;
+            this.searchClubComboBox.Items.AddRange(new object[] {
+            "Id",
+            "Name",
+            "Foundation date",
+            "City"});
+            this.searchClubComboBox.Location = new System.Drawing.Point(348, 50);
+            this.searchClubComboBox.Name = "searchClubComboBox";
+            this.searchClubComboBox.Size = new System.Drawing.Size(125, 21);
+            this.searchClubComboBox.TabIndex = 12;
+            // 
+            // searchCoachComboBox
+            // 
+            this.searchCoachComboBox.FormattingEnabled = true;
+            this.searchCoachComboBox.Items.AddRange(new object[] {
+            "Id",
+            "Name",
+            "Club",
+            "Specialization"});
+            this.searchCoachComboBox.Location = new System.Drawing.Point(348, 50);
+            this.searchCoachComboBox.Name = "searchCoachComboBox";
+            this.searchCoachComboBox.Size = new System.Drawing.Size(125, 21);
+            this.searchCoachComboBox.TabIndex = 13;
+            // 
+            // searchParticipantComboBox
+            // 
+            this.searchParticipantComboBox.FormattingEnabled = true;
+            this.searchParticipantComboBox.Items.AddRange(new object[] {
+            "Id",
+            "Name",
+            "Gender",
+            "Date of birth",
+            "Coach"});
+            this.searchParticipantComboBox.Location = new System.Drawing.Point(348, 50);
+            this.searchParticipantComboBox.Name = "searchParticipantComboBox";
+            this.searchParticipantComboBox.Size = new System.Drawing.Size(125, 21);
+            this.searchParticipantComboBox.TabIndex = 14;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 610);
+            this.Controls.Add(this.searchParticipantComboBox);
+            this.Controls.Add(this.searchCoachComboBox);
+            this.Controls.Add(this.searchClubComboBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.advancedSearchCheckBox);
             this.Controls.Add(this.filterButton);
             this.Controls.Add(this.searchDateTimePicker);
             this.Controls.Add(this.searchTextBox);
-            this.Controls.Add(this.searchByComboBox);
+            this.Controls.Add(this.searchEventComboBox);
             this.Controls.Add(this.deleteSelected);
             this.Controls.Add(this.updateSelected);
             this.Controls.Add(this.DBTabs);
@@ -526,7 +566,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem1;
         private RunningClubDataSetTableAdapters.ParticipantTableAdapter participantTableAdapter1;
-        private System.Windows.Forms.ComboBox searchByComboBox;
+        private System.Windows.Forms.ComboBox searchEventComboBox;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.DateTimePicker searchDateTimePicker;
         private System.Windows.Forms.Button filterButton;
@@ -534,6 +574,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem addHeatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getClubReportToolStripMenuItem;
+        private System.Windows.Forms.ComboBox searchClubComboBox;
+        private System.Windows.Forms.ComboBox searchCoachComboBox;
+        private System.Windows.Forms.ComboBox searchParticipantComboBox;
     }
 }
 

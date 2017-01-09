@@ -17,6 +17,7 @@ namespace Club
 
         private void ClubReport_Load(object sender, EventArgs e)
         {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "runningClubDataSet.HeatParticipants". При необходимости она может быть перемещена или удалена.
             // TODO: данная строка кода позволяет загрузить данные в таблицу "runningClubDataSet.Club". При необходимости она может быть перемещена или удалена.
             this.clubTableAdapter.Fill(this.runningClubDataSet.Club);
             try
@@ -27,7 +28,7 @@ namespace Club
                 label10.Text = club2TableAdapter.GetData(club.First().Id).First().City;
                 label11.Text = club2TableAdapter.GetData(club.First().Id).First().Coaches.ToString();
                 label12.Text = club2TableAdapter.GetData(club.First().Id).First().Students.ToString();
-                label13.Text = club2TableAdapter.GetData(club.First().Id).First().Results.ToString();
+                label13.Text = club2TableAdapter.ScalarQuery(club.First().Id).ToString();
             }
             catch (Exception ex)
             {
@@ -42,12 +43,14 @@ namespace Club
             try
             {
                 var club = club2TableAdapter.GetData(Convert.ToInt32(comboBox1.SelectedValue));
-                label8.Text = club2TableAdapter.GetData(club.First().Id).First().Id.ToString();
-                label9.Text = club2TableAdapter.GetData(club.First().Id).First().Name;
-                label10.Text = club2TableAdapter.GetData(club.First().Id).First().City;
-                label11.Text = club2TableAdapter.GetData(club.First().Id).First().Coaches.ToString();
-                label12.Text = club2TableAdapter.GetData(club.First().Id).First().Students.ToString();
-                label13.Text = club2TableAdapter.GetData(club.First().Id).First().Results.ToString();
+                label8.Text = club2TableAdapter.GetData(club.Single().Id).Single().Id.ToString();
+                label9.Text = club2TableAdapter.GetData(club.Single().Id).Single().Name;
+                label10.Text = club2TableAdapter.GetData(club.Single().Id).Single().City;
+                label11.Text = club2TableAdapter.GetData(club.Single().Id).Single().Coaches.ToString();
+                label12.Text = club2TableAdapter.GetData(club.Single().Id).Single().Students.ToString();
+                label13.Text = club2TableAdapter.ScalarQuery(club.Single().Id).ToString();
+                dataGridView1.DataSource = heatParticipantsTableAdapter.FillBy2(runningClubDataSet.HeatParticipants,
+                    club.Single().Id);
             }
             catch (Exception ex)
             {
@@ -61,23 +64,24 @@ namespace Club
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("Report.pdf", FileMode.Create));
             doc.Open();
             PdfPTable table = new PdfPTable(2);
-            PdfPCell header = new PdfPCell(new Phrase(clubTableAdapter.GetDataBy1(_cId).First().Name, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 16f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
+            PdfPCell header = new PdfPCell(new Phrase(club2TableAdapter.GetData(_cId).Single().Name, new iTextSharp.text.Font(iTextSharp.text.Font.NORMAL, 16f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLUE)));
             header.Colspan = 2;
             header.HorizontalAlignment = 1;
             table.AddCell(header);
             var item = club2TableAdapter.GetData(_cId).First();
             if (club2TableAdapter.GetData(_cId).Count != 0)
             {
+                var club = club2TableAdapter.GetData(Convert.ToInt32(comboBox1.SelectedValue));
                 table.AddCell(@"Id:");
-                table.AddCell(item.Id.ToString() as string);
+                table.AddCell(item.Id.ToString());
                 table.AddCell(@"City:");
-                table.AddCell(item.City as string);
+                table.AddCell(item.City);
                 table.AddCell(@"Number of coaches:");
-                table.AddCell(item.Coaches.ToString() as string);
+                table.AddCell(item.Coaches.ToString());
                 table.AddCell(@"Number of students:");
-                table.AddCell(item.Students.ToString() as string);
+                table.AddCell(item.Students.ToString());
                 table.AddCell(@"Number of results:");
-                table.AddCell(item.Results.ToString() as string);
+                table.AddCell(label13.Text = club2TableAdapter.ScalarQuery(club.Single().Id).ToString());
             }
             PdfPCell footer = new PdfPCell(new Phrase(DateTime.Now.ToString()));
             PdfPCell footer2 = new PdfPCell(new Phrase(@"Club president______________"));

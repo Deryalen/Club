@@ -28,6 +28,11 @@ namespace Club
             dataGridView1.Columns[2].Width = 60;
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Width = 40;
+            searchParticipantComboBox.Visible = true;
+            searchClubComboBox.Visible = false;
+            searchCoachComboBox.Visible = false;
+            searchEventComboBox.Visible = false;
+            searchParticipantComboBox.Enabled = false;
 
         }
 
@@ -42,6 +47,11 @@ namespace Club
             label1.Text = @"Events";
             updateSelected.Enabled = true;
             deleteSelected.Enabled = true;
+            filterButton.Enabled = true;
+            searchParticipantComboBox.Visible = false;
+            searchClubComboBox.Visible = false;
+            searchCoachComboBox.Visible = false;
+            searchEventComboBox.Visible = true;
         }
 
         private void participantsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,12 +61,17 @@ namespace Club
             label1.Text = @"Participants";
             updateSelected.Enabled = true;
             deleteSelected.Enabled = true;
+            filterButton.Enabled = true;
 
             dataGridView1.Columns[0].Width = 40;
             dataGridView1.Columns[1].Width = 300;
             dataGridView1.Columns[2].Width = 60;
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Width = 40;
+            searchParticipantComboBox.Visible = true;
+            searchClubComboBox.Visible = false;
+            searchCoachComboBox.Visible = false;
+            searchEventComboBox.Visible = false;
         }
 
         private void coachesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +80,11 @@ namespace Club
             label1.Text = @"Coaches";
             updateSelected.Enabled = true;
             deleteSelected.Enabled = true;
+            filterButton.Enabled = true;
+            searchParticipantComboBox.Visible = false;
+            searchClubComboBox.Visible = false;
+            searchCoachComboBox.Visible = true;
+            searchEventComboBox.Visible = false;
         }
 
         private void clubsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,6 +93,11 @@ namespace Club
             label1.Text = @"Clubs";
             updateSelected.Enabled = true;
             deleteSelected.Enabled = true;
+            filterButton.Enabled = false;
+            searchParticipantComboBox.Visible = false;
+            searchClubComboBox.Visible = true;
+            searchCoachComboBox.Visible = false;
+            searchEventComboBox.Visible = false;
         }
 
         private void distancesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,7 +419,7 @@ namespace Club
 
         private void SearchParticipant()
         {
-            switch (searchByComboBox.Text)
+            switch (searchParticipantComboBox.Text)
             {
                 case "Id":
                     Regex x = new Regex(@"^[0-9]");
@@ -462,7 +487,7 @@ namespace Club
         private void SearchCoach()
         {
             Regex x;
-            switch (searchByComboBox.Text)
+            switch (searchCoachComboBox.Text)
             {
                 case "Id":
                     x = new Regex(@"^[0-9]");
@@ -531,7 +556,7 @@ namespace Club
         private void SearchClub()
         {
             Regex x;
-            switch (searchByComboBox.Text)
+            switch (searchClubComboBox.Text)
             {
                 case "Id":
                     x = new Regex(@"^[0-9]");
@@ -565,7 +590,7 @@ namespace Club
                         }
                     }
                     break;
-                case "Foundation Date":
+                case "Foundation date":
                     for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
                         if (dataGridView1.Rows[i].Cells[2].Value.ToString().Contains(searchTextBox.Text))
@@ -600,7 +625,7 @@ namespace Club
         private void SearchEvent()
         {
             Regex x;
-            switch (searchByComboBox.Text)
+            switch (searchEventComboBox.Text)
             {
                 case "Id":
                     x = new Regex(@"^[0-9]");
@@ -686,7 +711,7 @@ namespace Club
 
         private void advancedSearchCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            searchByComboBox.Enabled = advancedSearchCheckBox.Checked;
+            searchEventComboBox.Enabled = searchParticipantComboBox.Enabled = searchClubComboBox.Enabled = searchCoachComboBox.Enabled =  advancedSearchCheckBox.Checked;
         }
 
         private void filterButton_Click(object sender, EventArgs e)

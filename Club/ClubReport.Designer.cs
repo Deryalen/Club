@@ -49,8 +49,17 @@
             this.confirmButton = new System.Windows.Forms.Button();
             this.eventTableAdapter = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
             this.club2TableAdapter = new Club.RunningClubDataSetTableAdapters.Club2TableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.heatParticipantsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.heatParticipantsTableAdapter = new Club.RunningClubDataSetTableAdapters.HeatParticipantsTableAdapter();
+            this.heatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.participantDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heatParticipantsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +78,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(51, 10);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(201, 21);
+            this.comboBox1.Size = new System.Drawing.Size(192, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.ValueMember = "Id";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -227,11 +236,63 @@
             // 
             this.club2TableAdapter.ClearBeforeFill = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.heatDataGridViewTextBoxColumn,
+            this.eventDataGridViewTextBoxColumn,
+            this.participantDataGridViewTextBoxColumn,
+            this.resultDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.heatParticipantsBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(249, 10);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(346, 456);
+            this.dataGridView1.TabIndex = 24;
+            // 
+            // heatParticipantsBindingSource
+            // 
+            this.heatParticipantsBindingSource.DataMember = "HeatParticipants";
+            this.heatParticipantsBindingSource.DataSource = this.runningClubDataSet;
+            // 
+            // heatParticipantsTableAdapter
+            // 
+            this.heatParticipantsTableAdapter.ClearBeforeFill = true;
+            // 
+            // heatDataGridViewTextBoxColumn
+            // 
+            this.heatDataGridViewTextBoxColumn.DataPropertyName = "Heat";
+            this.heatDataGridViewTextBoxColumn.HeaderText = "Heat";
+            this.heatDataGridViewTextBoxColumn.Name = "heatDataGridViewTextBoxColumn";
+            // 
+            // eventDataGridViewTextBoxColumn
+            // 
+            this.eventDataGridViewTextBoxColumn.DataPropertyName = "Event";
+            this.eventDataGridViewTextBoxColumn.HeaderText = "Event";
+            this.eventDataGridViewTextBoxColumn.Name = "eventDataGridViewTextBoxColumn";
+            // 
+            // participantDataGridViewTextBoxColumn
+            // 
+            this.participantDataGridViewTextBoxColumn.DataPropertyName = "Participant";
+            this.participantDataGridViewTextBoxColumn.HeaderText = "Participant";
+            this.participantDataGridViewTextBoxColumn.Name = "participantDataGridViewTextBoxColumn";
+            // 
+            // resultDataGridViewTextBoxColumn
+            // 
+            this.resultDataGridViewTextBoxColumn.DataPropertyName = "Result";
+            this.resultDataGridViewTextBoxColumn.HeaderText = "Result";
+            this.resultDataGridViewTextBoxColumn.Name = "resultDataGridViewTextBoxColumn";
+            // 
             // ClubReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 478);
+            this.ClientSize = new System.Drawing.Size(607, 478);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -253,6 +314,8 @@
             this.Load += new System.EventHandler(this.ClubReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.clubBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heatParticipantsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,5 +343,12 @@
         private System.Windows.Forms.Button confirmButton;
         private RunningClubDataSetTableAdapters.EventTableAdapter eventTableAdapter;
         private RunningClubDataSetTableAdapters.Club2TableAdapter club2TableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource heatParticipantsBindingSource;
+        private RunningClubDataSetTableAdapters.HeatParticipantsTableAdapter heatParticipantsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn heatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn participantDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
     }
 }

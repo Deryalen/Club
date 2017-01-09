@@ -45,6 +45,7 @@
             this.eventBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.eventTableAdapter = new Club.RunningClubDataSetTableAdapters.EventTableAdapter();
             this.confirmButton = new System.Windows.Forms.Button();
+            this.dataTable3TableAdapter1 = new Club.RunningClubDataSetTableAdapters.DataTable3TableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
@@ -186,6 +187,10 @@
             this.confirmButton.UseVisualStyleBackColor = true;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
+            // dataTable3TableAdapter1
+            // 
+            this.dataTable3TableAdapter1.ClearBeforeFill = true;
+            // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,5 +231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn distanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn resultDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button confirmButton;
+        private RunningClubDataSetTableAdapters.DataTable3TableAdapter dataTable3TableAdapter1;
     }
 }
