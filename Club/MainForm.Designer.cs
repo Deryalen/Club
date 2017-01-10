@@ -187,7 +187,7 @@
             this.eventsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addHeatsToolStripMenuItem});
             this.eventsToolStripMenuItem.Name = "eventsToolStripMenuItem";
-            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eventsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.eventsToolStripMenuItem.Text = "Events";
             this.eventsToolStripMenuItem.Click += new System.EventHandler(this.eventsToolStripMenuItem_Click);
             // 
@@ -201,28 +201,28 @@
             // participantsToolStripMenuItem
             // 
             this.participantsToolStripMenuItem.Name = "participantsToolStripMenuItem";
-            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.participantsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.participantsToolStripMenuItem.Text = "Participants";
             this.participantsToolStripMenuItem.Click += new System.EventHandler(this.participantsToolStripMenuItem_Click);
             // 
             // coachesToolStripMenuItem
             // 
             this.coachesToolStripMenuItem.Name = "coachesToolStripMenuItem";
-            this.coachesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.coachesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.coachesToolStripMenuItem.Text = "Coaches";
             this.coachesToolStripMenuItem.Click += new System.EventHandler(this.coachesToolStripMenuItem_Click);
             // 
             // clubsToolStripMenuItem
             // 
             this.clubsToolStripMenuItem.Name = "clubsToolStripMenuItem";
-            this.clubsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clubsToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.clubsToolStripMenuItem.Text = "Clubs";
             this.clubsToolStripMenuItem.Click += new System.EventHandler(this.clubsToolStripMenuItem_Click);
             // 
             // distancesToolStripMenuItem
             // 
             this.distancesToolStripMenuItem.Name = "distancesToolStripMenuItem";
-            this.distancesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.distancesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.distancesToolStripMenuItem.Text = "Distances";
             this.distancesToolStripMenuItem.Click += new System.EventHandler(this.distancesToolStripMenuItem_Click);
             // 
@@ -302,7 +302,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 

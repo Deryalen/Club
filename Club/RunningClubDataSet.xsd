@@ -175,11 +175,17 @@ SELECT Id, Name, Gender, DateOfBirth, Coach FROM Participant WHERE (Id = @Id)</C
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="RunningClubConnectionString (Settings)" DbObjectName="RunningClub.dbo.Participant" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillWithCoach" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy2" GeneratorSourceName="FillWithCoach" GetMethodModifier="Public" GetMethodName="GetDataBy2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillWithCoach">
+              <DbSource ConnectionRef="RunningClubConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillWithCoach" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy2" GeneratorSourceName="FillWithCoach" GetMethodModifier="Public" GetMethodName="GetDataBy2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="FillWithCoach">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        Participant.Id, Participant.Name, Participant.Gender, Participant.DateOfBirth, Participant.Coach
-FROM            Participant</CommandText>
+                    <CommandText>SELECT        Participant.Id, Participant.Name, Participant.Gender, Participant.DateOfBirth, Participant.Coach, Coach.Name AS CoachName
+FROM            Participant INNER JOIN
+                         Coach ON Participant.Coach = Coach.Id
+UNION
+SELECT        Participant_1.Id, Participant_1.Name, Participant_1.Gender, Participant_1.DateOfBirth, - 1 AS Expr1, 'N/A' AS Expr2
+FROM            Participant AS Participant_1 CROSS JOIN
+                         Coach AS Coach_1
+WHERE        (Participant_1.Coach IS NULL)</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -939,7 +945,7 @@ WHERE        (HeatParticipants.Result IN
   <xs:element name="RunningClubDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RunningClubDataSet" msprop:Generator_UserDSName="RunningClubDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Club" msprop:Generator_TableClassName="ClubDataTable" msprop:Generator_TableVarName="tableClub" msprop:Generator_RowChangedName="ClubRowChanged" msprop:Generator_TablePropName="Club" msprop:Generator_RowDeletingName="ClubRowDeleting" msprop:Generator_RowChangingName="ClubRowChanging" msprop:Generator_RowEvHandlerName="ClubRowChangeEventHandler" msprop:Generator_RowDeletedName="ClubRowDeleted" msprop:Generator_RowClassName="ClubRow" msprop:Generator_UserTableName="Club" msprop:Generator_RowEvArgName="ClubRowChangeEvent">
+        <xs:element name="Club" msprop:Generator_TableClassName="ClubDataTable" msprop:Generator_TableVarName="tableClub" msprop:Generator_TablePropName="Club" msprop:Generator_RowDeletingName="ClubRowDeleting" msprop:Generator_RowChangingName="ClubRowChanging" msprop:Generator_RowEvHandlerName="ClubRowChangeEventHandler" msprop:Generator_RowDeletedName="ClubRowDeleted" msprop:Generator_UserTableName="Club" msprop:Generator_RowChangedName="ClubRowChanged" msprop:Generator_RowEvArgName="ClubRowChangeEvent" msprop:Generator_RowClassName="ClubRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -961,7 +967,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Participant" msprop:Generator_TableClassName="ParticipantDataTable" msprop:Generator_TableVarName="tableParticipant" msprop:Generator_RowChangedName="ParticipantRowChanged" msprop:Generator_TablePropName="Participant" msprop:Generator_RowDeletingName="ParticipantRowDeleting" msprop:Generator_RowChangingName="ParticipantRowChanging" msprop:Generator_RowEvHandlerName="ParticipantRowChangeEventHandler" msprop:Generator_RowDeletedName="ParticipantRowDeleted" msprop:Generator_RowClassName="ParticipantRow" msprop:Generator_UserTableName="Participant" msprop:Generator_RowEvArgName="ParticipantRowChangeEvent">
+        <xs:element name="Participant" msprop:Generator_TableClassName="ParticipantDataTable" msprop:Generator_TableVarName="tableParticipant" msprop:Generator_TablePropName="Participant" msprop:Generator_RowDeletingName="ParticipantRowDeleting" msprop:Generator_RowChangingName="ParticipantRowChanging" msprop:Generator_RowEvHandlerName="ParticipantRowChangeEventHandler" msprop:Generator_RowDeletedName="ParticipantRowDeleted" msprop:Generator_UserTableName="Participant" msprop:Generator_RowChangedName="ParticipantRowChanged" msprop:Generator_RowEvArgName="ParticipantRowChangeEvent" msprop:Generator_RowClassName="ParticipantRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -984,7 +990,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Coach" msprop:Generator_TableClassName="CoachDataTable" msprop:Generator_TableVarName="tableCoach" msprop:Generator_RowChangedName="CoachRowChanged" msprop:Generator_TablePropName="Coach" msprop:Generator_RowDeletingName="CoachRowDeleting" msprop:Generator_RowChangingName="CoachRowChanging" msprop:Generator_RowEvHandlerName="CoachRowChangeEventHandler" msprop:Generator_RowDeletedName="CoachRowDeleted" msprop:Generator_RowClassName="CoachRow" msprop:Generator_UserTableName="Coach" msprop:Generator_RowEvArgName="CoachRowChangeEvent">
+        <xs:element name="Coach" msprop:Generator_TableClassName="CoachDataTable" msprop:Generator_TableVarName="tableCoach" msprop:Generator_TablePropName="Coach" msprop:Generator_RowDeletingName="CoachRowDeleting" msprop:Generator_RowChangingName="CoachRowChanging" msprop:Generator_RowEvHandlerName="CoachRowChangeEventHandler" msprop:Generator_RowDeletedName="CoachRowDeleted" msprop:Generator_UserTableName="Coach" msprop:Generator_RowChangedName="CoachRowChanged" msprop:Generator_RowEvArgName="CoachRowChangeEvent" msprop:Generator_RowClassName="CoachRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1006,7 +1012,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Distance" msprop:Generator_TableClassName="DistanceDataTable" msprop:Generator_TableVarName="tableDistance" msprop:Generator_RowChangedName="DistanceRowChanged" msprop:Generator_TablePropName="Distance" msprop:Generator_RowDeletingName="DistanceRowDeleting" msprop:Generator_RowChangingName="DistanceRowChanging" msprop:Generator_RowEvHandlerName="DistanceRowChangeEventHandler" msprop:Generator_RowDeletedName="DistanceRowDeleted" msprop:Generator_RowClassName="DistanceRow" msprop:Generator_UserTableName="Distance" msprop:Generator_RowEvArgName="DistanceRowChangeEvent">
+        <xs:element name="Distance" msprop:Generator_TableClassName="DistanceDataTable" msprop:Generator_TableVarName="tableDistance" msprop:Generator_TablePropName="Distance" msprop:Generator_RowDeletingName="DistanceRowDeleting" msprop:Generator_RowChangingName="DistanceRowChanging" msprop:Generator_RowEvHandlerName="DistanceRowChangeEventHandler" msprop:Generator_RowDeletedName="DistanceRowDeleted" msprop:Generator_UserTableName="Distance" msprop:Generator_RowChangedName="DistanceRowChanged" msprop:Generator_RowEvArgName="DistanceRowChangeEvent" msprop:Generator_RowClassName="DistanceRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Length" msprop:Generator_ColumnVarNameInTable="columnLength" msprop:Generator_ColumnPropNameInRow="Length" msprop:Generator_ColumnPropNameInTable="LengthColumn" msprop:Generator_UserColumnName="Length" type="xs:int" />
@@ -1034,7 +1040,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Event" msprop:Generator_TableClassName="EventDataTable" msprop:Generator_TableVarName="tableEvent" msprop:Generator_RowChangedName="EventRowChanged" msprop:Generator_TablePropName="Event" msprop:Generator_RowDeletingName="EventRowDeleting" msprop:Generator_RowChangingName="EventRowChanging" msprop:Generator_RowEvHandlerName="EventRowChangeEventHandler" msprop:Generator_RowDeletedName="EventRowDeleted" msprop:Generator_RowClassName="EventRow" msprop:Generator_UserTableName="Event" msprop:Generator_RowEvArgName="EventRowChangeEvent">
+        <xs:element name="Event" msprop:Generator_TableClassName="EventDataTable" msprop:Generator_TableVarName="tableEvent" msprop:Generator_TablePropName="Event" msprop:Generator_RowDeletingName="EventRowDeleting" msprop:Generator_RowChangingName="EventRowChanging" msprop:Generator_RowEvHandlerName="EventRowChangeEventHandler" msprop:Generator_RowDeletedName="EventRowDeleted" msprop:Generator_UserTableName="Event" msprop:Generator_RowChangedName="EventRowChanged" msprop:Generator_RowEvArgName="EventRowChangeEvent" msprop:Generator_RowClassName="EventRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1057,7 +1063,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Heat" msprop:Generator_TableClassName="HeatDataTable" msprop:Generator_TableVarName="tableHeat" msprop:Generator_RowChangedName="HeatRowChanged" msprop:Generator_TablePropName="Heat" msprop:Generator_RowDeletingName="HeatRowDeleting" msprop:Generator_RowChangingName="HeatRowChanging" msprop:Generator_RowEvHandlerName="HeatRowChangeEventHandler" msprop:Generator_RowDeletedName="HeatRowDeleted" msprop:Generator_RowClassName="HeatRow" msprop:Generator_UserTableName="Heat" msprop:Generator_RowEvArgName="HeatRowChangeEvent">
+        <xs:element name="Heat" msprop:Generator_TableClassName="HeatDataTable" msprop:Generator_TableVarName="tableHeat" msprop:Generator_TablePropName="Heat" msprop:Generator_RowDeletingName="HeatRowDeleting" msprop:Generator_RowChangingName="HeatRowChanging" msprop:Generator_RowEvHandlerName="HeatRowChangeEventHandler" msprop:Generator_RowDeletedName="HeatRowDeleted" msprop:Generator_UserTableName="Heat" msprop:Generator_RowChangedName="HeatRowChanged" msprop:Generator_RowEvArgName="HeatRowChangeEvent" msprop:Generator_RowClassName="HeatRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1066,7 +1072,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="HeatParticipants" msprop:Generator_TableClassName="HeatParticipantsDataTable" msprop:Generator_TableVarName="tableHeatParticipants" msprop:Generator_RowChangedName="HeatParticipantsRowChanged" msprop:Generator_TablePropName="HeatParticipants" msprop:Generator_RowDeletingName="HeatParticipantsRowDeleting" msprop:Generator_RowChangingName="HeatParticipantsRowChanging" msprop:Generator_RowEvHandlerName="HeatParticipantsRowChangeEventHandler" msprop:Generator_RowDeletedName="HeatParticipantsRowDeleted" msprop:Generator_RowClassName="HeatParticipantsRow" msprop:Generator_UserTableName="HeatParticipants" msprop:Generator_RowEvArgName="HeatParticipantsRowChangeEvent">
+        <xs:element name="HeatParticipants" msprop:Generator_TableClassName="HeatParticipantsDataTable" msprop:Generator_TableVarName="tableHeatParticipants" msprop:Generator_TablePropName="HeatParticipants" msprop:Generator_RowDeletingName="HeatParticipantsRowDeleting" msprop:Generator_RowChangingName="HeatParticipantsRowChanging" msprop:Generator_RowEvHandlerName="HeatParticipantsRowChangeEventHandler" msprop:Generator_RowDeletedName="HeatParticipantsRowDeleted" msprop:Generator_UserTableName="HeatParticipants" msprop:Generator_RowChangedName="HeatParticipantsRowChanged" msprop:Generator_RowEvArgName="HeatParticipantsRowChangeEvent" msprop:Generator_RowClassName="HeatParticipantsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Heat" msprop:Generator_ColumnVarNameInTable="columnHeat" msprop:Generator_ColumnPropNameInRow="Heat" msprop:Generator_ColumnPropNameInTable="HeatColumn" msprop:Generator_UserColumnName="Heat" type="xs:int" />
@@ -1076,7 +1082,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1107,7 +1113,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Club1" msprop:Generator_TableClassName="Club1DataTable" msprop:Generator_TableVarName="tableClub1" msprop:Generator_TablePropName="Club1" msprop:Generator_RowDeletingName="Club1RowDeleting" msprop:Generator_RowChangingName="Club1RowChanging" msprop:Generator_RowEvHandlerName="Club1RowChangeEventHandler" msprop:Generator_RowDeletedName="Club1RowDeleted" msprop:Generator_UserTableName="Club1" msprop:Generator_RowChangedName="Club1RowChanged" msprop:Generator_RowEvArgName="Club1RowChangeEvent" msprop:Generator_RowClassName="Club1Row">
+        <xs:element name="Club1" msprop:Generator_TableClassName="Club1DataTable" msprop:Generator_TableVarName="tableClub1" msprop:Generator_RowChangedName="Club1RowChanged" msprop:Generator_TablePropName="Club1" msprop:Generator_RowDeletingName="Club1RowDeleting" msprop:Generator_RowChangingName="Club1RowChanging" msprop:Generator_RowEvHandlerName="Club1RowChangeEventHandler" msprop:Generator_RowDeletedName="Club1RowDeleted" msprop:Generator_RowClassName="Club1Row" msprop:Generator_UserTableName="Club1" msprop:Generator_RowEvArgName="Club1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1123,7 +1129,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Coach1" msprop:Generator_TableClassName="Coach1DataTable" msprop:Generator_TableVarName="tableCoach1" msprop:Generator_TablePropName="Coach1" msprop:Generator_RowDeletingName="Coach1RowDeleting" msprop:Generator_RowChangingName="Coach1RowChanging" msprop:Generator_RowEvHandlerName="Coach1RowChangeEventHandler" msprop:Generator_RowDeletedName="Coach1RowDeleted" msprop:Generator_UserTableName="Coach1" msprop:Generator_RowChangedName="Coach1RowChanged" msprop:Generator_RowEvArgName="Coach1RowChangeEvent" msprop:Generator_RowClassName="Coach1Row">
+        <xs:element name="Coach1" msprop:Generator_TableClassName="Coach1DataTable" msprop:Generator_TableVarName="tableCoach1" msprop:Generator_RowChangedName="Coach1RowChanged" msprop:Generator_TablePropName="Coach1" msprop:Generator_RowDeletingName="Coach1RowDeleting" msprop:Generator_RowChangingName="Coach1RowChanging" msprop:Generator_RowEvHandlerName="Coach1RowChangeEventHandler" msprop:Generator_RowDeletedName="Coach1RowDeleted" msprop:Generator_RowClassName="Coach1Row" msprop:Generator_UserTableName="Coach1" msprop:Generator_RowEvArgName="Coach1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1139,7 +1145,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Club2" msprop:Generator_TableClassName="Club2DataTable" msprop:Generator_TableVarName="tableClub2" msprop:Generator_TablePropName="Club2" msprop:Generator_RowDeletingName="Club2RowDeleting" msprop:Generator_RowChangingName="Club2RowChanging" msprop:Generator_RowEvHandlerName="Club2RowChangeEventHandler" msprop:Generator_RowDeletedName="Club2RowDeleted" msprop:Generator_UserTableName="Club2" msprop:Generator_RowChangedName="Club2RowChanged" msprop:Generator_RowEvArgName="Club2RowChangeEvent" msprop:Generator_RowClassName="Club2Row">
+        <xs:element name="Club2" msprop:Generator_TableClassName="Club2DataTable" msprop:Generator_TableVarName="tableClub2" msprop:Generator_RowChangedName="Club2RowChanged" msprop:Generator_TablePropName="Club2" msprop:Generator_RowDeletingName="Club2RowDeleting" msprop:Generator_RowChangingName="Club2RowChanging" msprop:Generator_RowEvHandlerName="Club2RowChangeEventHandler" msprop:Generator_RowDeletedName="Club2RowDeleted" msprop:Generator_RowClassName="Club2Row" msprop:Generator_UserTableName="Club2" msprop:Generator_RowEvArgName="Club2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1162,7 +1168,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Heat" msprop:Generator_ColumnVarNameInTable="columnHeat" msprop:Generator_ColumnPropNameInRow="Heat" msprop:Generator_ColumnPropNameInTable="HeatColumn" msprop:Generator_UserColumnName="Heat" type="xs:int" />
@@ -1179,7 +1185,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent" msprop:Generator_RowClassName="DataTable3Row">
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_RowClassName="DataTable3Row" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -1210,7 +1216,7 @@ WHERE        (HeatParticipants.Result IN
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable4" msprop:Generator_TableClassName="DataTable4DataTable" msprop:Generator_TableVarName="tableDataTable4" msprop:Generator_RowChangedName="DataTable4RowChanged" msprop:Generator_TablePropName="DataTable4" msprop:Generator_RowDeletingName="DataTable4RowDeleting" msprop:Generator_RowChangingName="DataTable4RowChanging" msprop:Generator_RowEvHandlerName="DataTable4RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable4RowDeleted" msprop:Generator_RowClassName="DataTable4Row" msprop:Generator_UserTableName="DataTable4" msprop:Generator_RowEvArgName="DataTable4RowChangeEvent">
+        <xs:element name="DataTable4" msprop:Generator_TableClassName="DataTable4DataTable" msprop:Generator_TableVarName="tableDataTable4" msprop:Generator_TablePropName="DataTable4" msprop:Generator_RowDeletingName="DataTable4RowDeleting" msprop:Generator_RowChangingName="DataTable4RowChanging" msprop:Generator_RowEvHandlerName="DataTable4RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable4RowDeleted" msprop:Generator_UserTableName="DataTable4" msprop:Generator_RowChangedName="DataTable4RowChanged" msprop:Generator_RowEvArgName="DataTable4RowChangeEvent" msprop:Generator_RowClassName="DataTable4Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Heat" msprop:Generator_ColumnVarNameInTable="columnHeat" msprop:Generator_ColumnPropNameInRow="Heat" msprop:Generator_ColumnPropNameInTable="HeatColumn" msprop:Generator_UserColumnName="Heat" type="xs:int" />
@@ -1272,29 +1278,29 @@ WHERE        (HeatParticipants.Result IN
       <xs:selector xpath=".//mstns:Club2" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
-    <xs:keyref name="FK_HeatParticipants_ToTable" refer="Heat_Constraint1" msprop:rel_Generator_UserChildTable="HeatParticipants" msprop:rel_Generator_ChildPropName="GetHeatParticipantsRows" msprop:rel_Generator_UserRelationName="FK_HeatParticipants_ToTable" msprop:rel_Generator_ParentPropName="HeatRowParent" msprop:rel_Generator_RelationVarName="relationFK_HeatParticipants_ToTable" msprop:rel_Generator_UserParentTable="Heat" msdata:AcceptRejectRule="Cascade">
+    <xs:keyref name="FK_HeatParticipants_ToTable_1" refer="Participant_Constraint1" msprop:rel_Generator_UserChildTable="HeatParticipants" msprop:rel_Generator_ChildPropName="GetHeatParticipantsRows" msprop:rel_Generator_UserRelationName="FK_HeatParticipants_ToTable_1" msprop:rel_Generator_RelationVarName="relationFK_HeatParticipants_ToTable_1" msprop:rel_Generator_UserParentTable="Participant" msprop:rel_Generator_ParentPropName="ParticipantRow" msdata:AcceptRejectRule="Cascade">
+      <xs:selector xpath=".//mstns:HeatParticipants" />
+      <xs:field xpath="mstns:Participant" />
+    </xs:keyref>
+    <xs:keyref name="FK_HeatParticipants_ToTable" refer="Heat_Constraint1" msprop:rel_Generator_UserChildTable="HeatParticipants" msprop:rel_Generator_ChildPropName="GetHeatParticipantsRows" msprop:rel_Generator_UserRelationName="FK_HeatParticipants_ToTable" msprop:rel_Generator_RelationVarName="relationFK_HeatParticipants_ToTable" msprop:rel_Generator_UserParentTable="Heat" msprop:rel_Generator_ParentPropName="HeatRowParent" msdata:AcceptRejectRule="Cascade">
       <xs:selector xpath=".//mstns:HeatParticipants" />
       <xs:field xpath="mstns:Heat" />
       <xs:field xpath="mstns:Event" />
     </xs:keyref>
-    <xs:keyref name="FK_HeatParticipants_ToTable_1" refer="Participant_Constraint1" msprop:rel_Generator_UserChildTable="HeatParticipants" msprop:rel_Generator_ChildPropName="GetHeatParticipantsRows" msprop:rel_Generator_UserRelationName="FK_HeatParticipants_ToTable_1" msprop:rel_Generator_ParentPropName="ParticipantRow" msprop:rel_Generator_RelationVarName="relationFK_HeatParticipants_ToTable_1" msprop:rel_Generator_UserParentTable="Participant" msdata:AcceptRejectRule="Cascade">
-      <xs:selector xpath=".//mstns:HeatParticipants" />
-      <xs:field xpath="mstns:Participant" />
-    </xs:keyref>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_Participant_ToTable" msdata:parent="Coach" msdata:child="Participant" msdata:parentkey="Id" msdata:childkey="Coach" msprop:Generator_UserChildTable="Participant" msprop:Generator_ChildPropName="GetParticipantRows" msprop:Generator_UserRelationName="FK_Participant_ToTable" msprop:Generator_ParentPropName="CoachRow" msprop:Generator_RelationVarName="relationFK_Participant_ToTable" msprop:Generator_UserParentTable="Coach" />
-      <msdata:Relationship name="FK_Coach_ToTable" msdata:parent="Club" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable" msprop:Generator_RelationVarName="relationFK_Coach_ToTable" msprop:Generator_UserParentTable="Club" msprop:Generator_ParentPropName="ClubRow" />
-      <msdata:Relationship name="FK_Heat_ToTable" msdata:parent="Distance" msdata:child="Heat" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="Heat" msprop:Generator_ChildPropName="GetHeatRows" msprop:Generator_UserRelationName="FK_Heat_ToTable" msprop:Generator_RelationVarName="relationFK_Heat_ToTable" msprop:Generator_UserParentTable="Distance" msprop:Generator_ParentPropName="DistanceRow" />
-      <msdata:Relationship name="FK_Heat_ToTable_1" msdata:parent="Event" msdata:child="Heat" msdata:parentkey="Id" msdata:childkey="Event" msprop:Generator_UserChildTable="Heat" msprop:Generator_ChildPropName="GetHeatRows" msprop:Generator_UserRelationName="FK_Heat_ToTable_1" msprop:Generator_RelationVarName="relationFK_Heat_ToTable_1" msprop:Generator_UserParentTable="Event" msprop:Generator_ParentPropName="EventRow" />
-      <msdata:Relationship name="FK_Coach_ToTable1" msdata:parent="DataTable1" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable1" msprop:Generator_RelationVarName="relationFK_Coach_ToTable1" msprop:Generator_UserParentTable="DataTable1" msprop:Generator_ParentPropName="DataTable1Row" />
-      <msdata:Relationship name="FK_Coach_ToTable2" msdata:parent="Club1" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable2" msprop:Generator_RelationVarName="relationFK_Coach_ToTable2" msprop:Generator_UserParentTable="Club1" msprop:Generator_ParentPropName="Club1Row" />
-      <msdata:Relationship name="FK_Participant_ToTable1" msdata:parent="Coach1" msdata:child="Participant" msdata:parentkey="Id" msdata:childkey="Coach" msprop:Generator_UserChildTable="Participant" msprop:Generator_ChildPropName="GetParticipantRows" msprop:Generator_UserRelationName="FK_Participant_ToTable1" msprop:Generator_RelationVarName="relationFK_Participant_ToTable1" msprop:Generator_UserParentTable="Coach1" msprop:Generator_ParentPropName="Coach1Row" />
-      <msdata:Relationship name="FK_Coach_ToTable3" msdata:parent="Club2" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable3" msprop:Generator_RelationVarName="relationFK_Coach_ToTable3" msprop:Generator_UserParentTable="Club2" msprop:Generator_ParentPropName="Club2Row" />
-      <msdata:Relationship name="FK_Heat_ToTable1" msdata:parent="Distance" msdata:child="DataTable2" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="DataTable2" msprop:Generator_ChildPropName="GetDataTable2Rows" msprop:Generator_UserRelationName="FK_Heat_ToTable1" msprop:Generator_ParentPropName="DistanceRow" msprop:Generator_RelationVarName="relationFK_Heat_ToTable1" msprop:Generator_UserParentTable="Distance" />
-      <msdata:Relationship name="FK_Coach_ToTable4" msdata:parent="DataTable3" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable4" msprop:Generator_RelationVarName="relationFK_Coach_ToTable4" msprop:Generator_UserParentTable="DataTable3" msprop:Generator_ParentPropName="DataTable3Row" />
-      <msdata:Relationship name="FK_Heat_ToTable2" msdata:parent="Distance" msdata:child="DataTable4" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="DataTable4" msprop:Generator_ChildPropName="GetDataTable4Rows" msprop:Generator_UserRelationName="FK_Heat_ToTable2" msprop:Generator_ParentPropName="DistanceRow" msprop:Generator_RelationVarName="relationFK_Heat_ToTable2" msprop:Generator_UserParentTable="Distance" />
+      <msdata:Relationship name="FK_Participant_ToTable" msdata:parent="Coach" msdata:child="Participant" msdata:parentkey="Id" msdata:childkey="Coach" msprop:Generator_UserChildTable="Participant" msprop:Generator_ChildPropName="GetParticipantRows" msprop:Generator_UserRelationName="FK_Participant_ToTable" msprop:Generator_RelationVarName="relationFK_Participant_ToTable" msprop:Generator_UserParentTable="Coach" msprop:Generator_ParentPropName="CoachRow" />
+      <msdata:Relationship name="FK_Coach_ToTable" msdata:parent="Club" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable" msprop:Generator_ParentPropName="ClubRow" msprop:Generator_RelationVarName="relationFK_Coach_ToTable" msprop:Generator_UserParentTable="Club" />
+      <msdata:Relationship name="FK_Heat_ToTable" msdata:parent="Distance" msdata:child="Heat" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="Heat" msprop:Generator_ChildPropName="GetHeatRows" msprop:Generator_UserRelationName="FK_Heat_ToTable" msprop:Generator_ParentPropName="DistanceRow" msprop:Generator_RelationVarName="relationFK_Heat_ToTable" msprop:Generator_UserParentTable="Distance" />
+      <msdata:Relationship name="FK_Heat_ToTable_1" msdata:parent="Event" msdata:child="Heat" msdata:parentkey="Id" msdata:childkey="Event" msprop:Generator_UserChildTable="Heat" msprop:Generator_ChildPropName="GetHeatRows" msprop:Generator_UserRelationName="FK_Heat_ToTable_1" msprop:Generator_ParentPropName="EventRow" msprop:Generator_RelationVarName="relationFK_Heat_ToTable_1" msprop:Generator_UserParentTable="Event" />
+      <msdata:Relationship name="FK_Coach_ToTable1" msdata:parent="DataTable1" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable1" msprop:Generator_ParentPropName="DataTable1Row" msprop:Generator_RelationVarName="relationFK_Coach_ToTable1" msprop:Generator_UserParentTable="DataTable1" />
+      <msdata:Relationship name="FK_Coach_ToTable2" msdata:parent="Club1" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable2" msprop:Generator_ParentPropName="Club1Row" msprop:Generator_RelationVarName="relationFK_Coach_ToTable2" msprop:Generator_UserParentTable="Club1" />
+      <msdata:Relationship name="FK_Participant_ToTable1" msdata:parent="Coach1" msdata:child="Participant" msdata:parentkey="Id" msdata:childkey="Coach" msprop:Generator_UserChildTable="Participant" msprop:Generator_ChildPropName="GetParticipantRows" msprop:Generator_UserRelationName="FK_Participant_ToTable1" msprop:Generator_ParentPropName="Coach1Row" msprop:Generator_RelationVarName="relationFK_Participant_ToTable1" msprop:Generator_UserParentTable="Coach1" />
+      <msdata:Relationship name="FK_Coach_ToTable3" msdata:parent="Club2" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable3" msprop:Generator_ParentPropName="Club2Row" msprop:Generator_RelationVarName="relationFK_Coach_ToTable3" msprop:Generator_UserParentTable="Club2" />
+      <msdata:Relationship name="FK_Heat_ToTable1" msdata:parent="Distance" msdata:child="DataTable2" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="DataTable2" msprop:Generator_ChildPropName="GetDataTable2Rows" msprop:Generator_UserRelationName="FK_Heat_ToTable1" msprop:Generator_RelationVarName="relationFK_Heat_ToTable1" msprop:Generator_UserParentTable="Distance" msprop:Generator_ParentPropName="DistanceRow" />
+      <msdata:Relationship name="FK_Coach_ToTable4" msdata:parent="DataTable3" msdata:child="Coach" msdata:parentkey="Id" msdata:childkey="Club" msprop:Generator_UserChildTable="Coach" msprop:Generator_ChildPropName="GetCoachRows" msprop:Generator_UserRelationName="FK_Coach_ToTable4" msprop:Generator_ParentPropName="DataTable3Row" msprop:Generator_RelationVarName="relationFK_Coach_ToTable4" msprop:Generator_UserParentTable="DataTable3" />
+      <msdata:Relationship name="FK_Heat_ToTable2" msdata:parent="Distance" msdata:child="DataTable4" msdata:parentkey="Length" msdata:childkey="Distance" msprop:Generator_UserChildTable="DataTable4" msprop:Generator_ChildPropName="GetDataTable4Rows" msprop:Generator_UserRelationName="FK_Heat_ToTable2" msprop:Generator_RelationVarName="relationFK_Heat_ToTable2" msprop:Generator_UserParentTable="Distance" msprop:Generator_ParentPropName="DistanceRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

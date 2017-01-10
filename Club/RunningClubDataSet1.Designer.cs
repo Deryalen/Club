@@ -52,9 +52,9 @@ namespace Club {
         
         private DataTable4DataTable tableDataTable4;
         
-        private global::System.Data.DataRelation relationFK_HeatParticipants_ToTable;
-        
         private global::System.Data.DataRelation relationFK_HeatParticipants_ToTable_1;
+        
+        private global::System.Data.DataRelation relationFK_HeatParticipants_ToTable;
         
         private global::System.Data.DataRelation relationFK_Participant_ToTable;
         
@@ -532,8 +532,8 @@ namespace Club {
                     this.tableDataTable4.InitVars();
                 }
             }
-            this.relationFK_HeatParticipants_ToTable = this.Relations["FK_HeatParticipants_ToTable"];
             this.relationFK_HeatParticipants_ToTable_1 = this.Relations["FK_HeatParticipants_ToTable_1"];
+            this.relationFK_HeatParticipants_ToTable = this.Relations["FK_HeatParticipants_ToTable"];
             this.relationFK_Participant_ToTable = this.Relations["FK_Participant_ToTable"];
             this.relationFK_Coach_ToTable = this.Relations["FK_Coach_ToTable"];
             this.relationFK_Heat_ToTable = this.Relations["FK_Heat_ToTable"];
@@ -584,6 +584,13 @@ namespace Club {
             this.tableDataTable4 = new DataTable4DataTable();
             base.Tables.Add(this.tableDataTable4);
             global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_HeatParticipants_ToTable_1", new global::System.Data.DataColumn[] {
+                        this.tableParticipant.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableHeatParticipants.ParticipantColumn});
+            this.tableHeatParticipants.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_HeatParticipants_ToTable", new global::System.Data.DataColumn[] {
                         this.tableHeat.IdColumn,
                         this.tableHeat.EventColumn}, new global::System.Data.DataColumn[] {
@@ -593,23 +600,16 @@ namespace Club {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_HeatParticipants_ToTable_1", new global::System.Data.DataColumn[] {
+            this.relationFK_HeatParticipants_ToTable_1 = new global::System.Data.DataRelation("FK_HeatParticipants_ToTable_1", new global::System.Data.DataColumn[] {
                         this.tableParticipant.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableHeatParticipants.ParticipantColumn});
-            this.tableHeatParticipants.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+                        this.tableHeatParticipants.ParticipantColumn}, false);
+            this.Relations.Add(this.relationFK_HeatParticipants_ToTable_1);
             this.relationFK_HeatParticipants_ToTable = new global::System.Data.DataRelation("FK_HeatParticipants_ToTable", new global::System.Data.DataColumn[] {
                         this.tableHeat.IdColumn,
                         this.tableHeat.EventColumn}, new global::System.Data.DataColumn[] {
                         this.tableHeatParticipants.HeatColumn,
                         this.tableHeatParticipants.EventColumn}, false);
             this.Relations.Add(this.relationFK_HeatParticipants_ToTable);
-            this.relationFK_HeatParticipants_ToTable_1 = new global::System.Data.DataRelation("FK_HeatParticipants_ToTable_1", new global::System.Data.DataColumn[] {
-                        this.tableParticipant.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableHeatParticipants.ParticipantColumn}, false);
-            this.Relations.Add(this.relationFK_HeatParticipants_ToTable_1);
             this.relationFK_Participant_ToTable = new global::System.Data.DataRelation("FK_Participant_ToTable", new global::System.Data.DataColumn[] {
                         this.tableCoach.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableParticipant.CoachColumn}, false);
@@ -5896,23 +5896,23 @@ namespace Club {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public HeatRow HeatRowParent {
-                get {
-                    return ((HeatRow)(this.GetParentRow(this.Table.ParentRelations["FK_HeatParticipants_ToTable"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_HeatParticipants_ToTable"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ParticipantRow ParticipantRow {
                 get {
                     return ((ParticipantRow)(this.GetParentRow(this.Table.ParentRelations["FK_HeatParticipants_ToTable_1"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_HeatParticipants_ToTable_1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public HeatRow HeatRowParent {
+                get {
+                    return ((HeatRow)(this.GetParentRow(this.Table.ParentRelations["FK_HeatParticipants_ToTable"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_HeatParticipants_ToTable"]);
                 }
             }
             
@@ -7819,8 +7819,14 @@ SELECT Id, Name, Gender, DateOfBirth, Coach FROM Participant WHERE (Id = @Id)";
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        Participant.Id, Participant.Name, Participant.Gender, Participant.D" +
-                "ateOfBirth, Participant.Coach\r\nFROM            Participant";
+            this._commandCollection[3].CommandText = @"SELECT        Participant.Id, Participant.Name, Participant.Gender, Participant.DateOfBirth, Participant.Coach, Coach.Name AS CoachName
+FROM            Participant INNER JOIN
+                         Coach ON Participant.Coach = Coach.Id
+UNION
+SELECT        Participant_1.Id, Participant_1.Name, Participant_1.Gender, Participant_1.DateOfBirth, - 1 AS Expr1, 'N/A' AS Expr2
+FROM            Participant AS Participant_1 CROSS JOIN
+                         Coach AS Coach_1
+WHERE        (Participant_1.Coach IS NULL)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
@@ -12037,6 +12043,24 @@ WHERE        (HeatParticipants.Result IN
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._coachTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._coachTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._participantTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._participantTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._distanceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Distance.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -12052,24 +12076,6 @@ WHERE        (HeatParticipants.Result IN
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._eventTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._participantTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._participantTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._coachTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._coachTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -12109,6 +12115,22 @@ WHERE        (HeatParticipants.Result IN
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._coachTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._coachTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._participantTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._participantTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._distanceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Distance.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -12122,22 +12144,6 @@ WHERE        (HeatParticipants.Result IN
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._eventTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._participantTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._participantTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._coachTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._coachTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -12183,22 +12189,6 @@ WHERE        (HeatParticipants.Result IN
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._coachTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._coachTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._participantTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._participantTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._eventTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Event.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -12212,6 +12202,22 @@ WHERE        (HeatParticipants.Result IN
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._distanceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._participantTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Participant.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._participantTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._coachTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Coach.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._coachTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

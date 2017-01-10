@@ -22,12 +22,8 @@ namespace Club
 
             dataGridView1.DataSource = participantBindingSource;
             label1.Text = @"Participants";
-
-            dataGridView1.Columns[0].Width = 40;
-            dataGridView1.Columns[1].Width = 300;
-            dataGridView1.Columns[2].Width = 60;
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].Width = 40;
+            
+            dataGridView1.Columns[1].Width = 100;
             searchParticipantComboBox.Visible = true;
             searchClubComboBox.Visible = false;
             searchCoachComboBox.Visible = false;
@@ -64,10 +60,10 @@ namespace Club
             filterButton.Enabled = true;
 
             dataGridView1.Columns[0].Width = 40;
-            dataGridView1.Columns[1].Width = 300;
+            dataGridView1.Columns[1].Width = 100;
             dataGridView1.Columns[2].Width = 60;
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].Width = 40;
+            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[4].Width = 100;
             searchParticipantComboBox.Visible = true;
             searchClubComboBox.Visible = false;
             searchCoachComboBox.Visible = false;
