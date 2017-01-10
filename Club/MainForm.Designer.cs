@@ -75,6 +75,7 @@
             this.searchClubComboBox = new System.Windows.Forms.ComboBox();
             this.searchCoachComboBox = new System.Windows.Forms.ComboBox();
             this.searchParticipantComboBox = new System.Windows.Forms.ComboBox();
+            this.getTrainingPlanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.participantBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.runningClubDataSet)).BeginInit();
@@ -109,7 +110,8 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.databasesToolStripMenuItem,
-            this.statsToolStripMenuItem});
+            this.statsToolStripMenuItem,
+            this.getTrainingPlanToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(992, 24);
@@ -487,6 +489,13 @@
             this.searchParticipantComboBox.Size = new System.Drawing.Size(125, 21);
             this.searchParticipantComboBox.TabIndex = 14;
             // 
+            // getTrainingPlanToolStripMenuItem
+            // 
+            this.getTrainingPlanToolStripMenuItem.Name = "getTrainingPlanToolStripMenuItem";
+            this.getTrainingPlanToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
+            this.getTrainingPlanToolStripMenuItem.Text = "Get training plan";
+            this.getTrainingPlanToolStripMenuItem.Click += new System.EventHandler(this.getTrainingPlanToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,6 +585,7 @@
         private System.Windows.Forms.ComboBox searchClubComboBox;
         private System.Windows.Forms.ComboBox searchCoachComboBox;
         private System.Windows.Forms.ComboBox searchParticipantComboBox;
+        private System.Windows.Forms.ToolStripMenuItem getTrainingPlanToolStripMenuItem;
     }
 }
 

@@ -782,5 +782,11 @@ namespace Club
             var inst = new ClubReport();
             inst.ShowDialog();
         }
+
+        private void getTrainingPlanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var inst = new TrainingPlan();
+            inst.ShowDialog();
+        }
     }
 }
